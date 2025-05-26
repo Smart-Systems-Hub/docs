@@ -1,0 +1,10 @@
+# Ignore Word files
+*.doc
+*.docx
+
+# Ignore temporary files created by Word
+~$*
+
+# Optional: Ignore other editable formats (if used)
+*.odt
+*.rtf
