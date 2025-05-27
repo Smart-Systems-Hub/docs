@@ -4,13 +4,13 @@ With the help of this document, you will gain an overview of how a provider can 
 
 Throughout this document, you will encounter several elements that need to be used, such as:
 
-- provider_url
-- provider_bpn
-- provider_dsp_endpoint
-- consumer_url
-- consumer_bpn
-- x-api-key for provider connector
-- x-api-key for consumer connector
+- `provider_url`
+- `provider_bpn`
+- `provider_dsp_endpoint`
+- `consumer_url`
+- `consumer_bpn`
+- `x-api-key` for provider connector
+- `x-api-key` for consumer connector
 
 No worries---you can get all the required information within the Smart Systems Hub -- Learn and Explore environment.
 
@@ -42,7 +42,7 @@ To follow the Management API walkthrough, both the provider and consumer will ne
 Use this URL with POST:
 
 ```http
-{{PROVIDER_CONNECTOR_URL}}/management/v3/assets
+{PROVIDER_CONNECTOR_URL}/management/v3/assets
 ```
 
 Use this part in body:
@@ -51,21 +51,21 @@ Use this part in body:
 {
   "@context": {},
   "@type": "Asset",
-  "@id": "{{ASSET_ID}}",
+  "@id": "{ASSET_ID}",
   "properties": {
-    "description": "{{DESCRIPTION FOR ASSET}}"
+    "description": "{DESCRIPTION_FOR_ASSET}"
   },
   "dataAddress": {
     "@type": "DataAddress",
-    "type": "{{SUPPORTED_TYPE}}",
-    "baseUrl": "{{API_PUBLICK_URL}}"
+    "type": "{SUPPORTED_TYPE}",
+    "baseUrl": "{API_PUBLIC_URL}"
   }
 }
 ```
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -76,7 +76,7 @@ In response you will get correct output.
 Use this URL with POST:
 
 ```http
-{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
 ```
 
 Use this part in body:
@@ -91,7 +91,7 @@ Use this part in body:
     }
   ],
   "@type": "PolicyDefinition",
-  "@id": "{{USAGE_POLICY_ID}}",
+  "@id": "{USAGE_POLICY_ID}",
   "policy": {
     "@type": "Set"
   }
@@ -100,7 +100,7 @@ Use this part in body:
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -109,7 +109,7 @@ In response you will get correct output.
 Use this URL with POST:
 
 ```http
-{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
 ```
 
 Use this part in body:
@@ -124,7 +124,7 @@ Use this part in body:
     }
   ],
   "@type": "PolicyDefinition",
-  "@id": "{{ACCESS_POLICY_ID}}",
+  "@id": "{ACCESS_POLICY_ID}",
   "policy": {
     "@type": "Set",
     "permission": [
@@ -133,7 +133,7 @@ Use this part in body:
         "constraint": {
           "leftOperand": "BusinessPartnerNumber",
           "operator": "eq",
-          "rightOperand": "{{CONSUMER_BPN}}"
+          "rightOperand": "{CONSUMER_BPN}"
         }
       }
     ]
@@ -143,7 +143,7 @@ Use this part in body:
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -152,7 +152,7 @@ In response you will get correct output.
 Use this URL with POST:
 
 ```http
-{{PROVIDER_CONNECTOR_URL}}/management/v3/contractdefinitions
+{PROVIDER_CONNECTOR_URL}/management/v3/contractdefinitions
 ```
 
 Use this part in body:
@@ -160,22 +160,22 @@ Use this part in body:
 ```json
 {
   "@context": {},
-  "@id": "{{CONTRACT_DEFINITION_ID}}",
+  "@id": "{CONTRACT_DEFINITION_ID}",
   "@type": "ContractDefinition",
-  "accessPolicyId": "{{USAGE_POLICY_ID}}",
-  "contractPolicyId": "{{ACCESS_POLICY_ID}}",
+  "accessPolicyId": "{USAGE_POLICY_ID}",
+  "contractPolicyId": "{ACCESS_POLICY_ID}",
   "assetsSelector": {
     "@type": "CriterionDto",
     "operandLeft": "https://w3id.org/edc/v0.0.1/ns/id",
     "operator": "=",
-    "operandRight": "{{ASSET_ID}}"
+    "operandRight": "{ASSET_ID}"
   }
 }
 ```
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -186,7 +186,7 @@ In response you will get correct output.
 Send catalog request via using this URL with POST:
 
 ```http
-{{CONSUMER_CONNECTOR_URL}}/management/v3/catalog/request
+{CONSUMER_CONNECTOR_URL}/management/v3/catalog/request
 ```
 
 Use this part in body:
@@ -197,8 +197,8 @@ Use this part in body:
     "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
   },
   "protocol": "dataspace-protocol-http",
-  "counterPartyAddress": "{{PROVIDER_CONNECTOR_DSP_URL}}",
-  "counterPartyId": "{{PROVIDER_BPN}}",
+  "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
+  "counterPartyId": "{PROVIDER_BPN}",
   "querySpec": {
     "offset": 0,
     "limit": 50
@@ -208,7 +208,7 @@ Use this part in body:
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -219,7 +219,7 @@ In response you will get correct output.
 Use this URL with POST:
 
 ```http
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs
 ```
 
 Use this part in body:
@@ -235,35 +235,35 @@ Use this part in body:
     }
   ],
   "@type": "ContractRequest",
-  "counterPartyAddress": "{{PROVIDER_CONNECTOR_DSP_URL}}",
+  "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
   "protocol": "dataspace-protocol-http",
   "policy": {
-    "@id": "{{OFFER_ID}}",
+    "@id": "{OFFER_ID}",
     "@type": "Offer",
-    "assigner": "{{PROVIDER_BPN}}",
+    "assigner": "{PROVIDER_BPN}",
     "permission": [
       {
         "action": "use",
         "constraint": {
           "leftOperand": "tx:BusinessPartnerNumber",
           "operator": "eq",
-          "rightOperand": "{{CONSUMER_BPN}}"
+          "rightOperand": "{CONSUMER_BPN}"
         }
       }
     ],
     "prohibition": [],
     "obligation": [],
-    "target": "{{ASSET_ID}}"
+    "target": "{ASSET_ID}"
   },
   "callbackAddresses": []
 }
 ```
 
-> Note: `{{OFFER_ID}}` is obtained from the previous step (catalog request)
+> Note: `{OFFER_ID}` is obtained from the previous step (catalog request)
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -272,7 +272,7 @@ In response you will get correct output.
 Use this URL with POST:
 
 ```http
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/request
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/request
 ```
 
 Use this part in body:
@@ -287,7 +287,7 @@ Use this part in body:
     {
       "operandLeft": "assetId",
       "operator": "=",
-      "operandRight": "{{ASSET_ID}}"
+      "operandRight": "{ASSET_ID}"
     }
   ]
 }
@@ -295,7 +295,7 @@ Use this part in body:
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -304,14 +304,14 @@ In response you will get correct output.
 Use this URL with GET:
 
 ```http
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/{{transferProcessId}}/dataaddres
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddres
 ```
 
-> Note: `transferProcessId` is obtained from the previous step
+> Note: `{transferProcessId}` is obtained from the previous step
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
 
 In response you will get correct output.
 
@@ -320,14 +320,14 @@ In response you will get correct output.
 Use GET with this URL:
 
 ```http
-{{endpoint}}
+{endpoint}
 ```
 
-> Note: `{{endpoint}}` is obtained from the previous step
+> Note: `{endpoint}` is obtained from the previous step
 
 Use this part in Header:
-- Key: `Authorization` Value: `{{authorization}}`
-  > Note: `{{authorization}}` is obtained from the previous step
+- Key: `Authorization` Value: `{authorization}`
+  > Note: `{authorization}` is obtained from the previous step
 
 In response you will get the data which provider shared with consumer.
 
