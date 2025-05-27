@@ -61,10 +61,11 @@ sections.
 
 Use this url with POST:
 
-{{PROVIDER_CONNECTOR_URL}}/management/v3/assets
+`{{PROVIDER_CONNECTOR_URL}}/management/v3/assets`
 
 Use this part in body:
 
+```
 {
 
   \"@context\": {},
@@ -90,12 +91,13 @@ Use this part in body:
   }
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{PROVIDER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -105,10 +107,11 @@ In response you will get correct output.
 
 Use this url with POST:
 
-{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions
+`{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions`
 
 Use this part in body:
 
+```
 {
 
   \"@context\": \[
@@ -136,12 +139,13 @@ Use this part in body:
   }
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{PROVIDER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -149,10 +153,11 @@ In response you will get correct output.
 
 Use this url with POST:
 
-{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions
+`{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions`
 
 Use this part in body:
 
+```
 {
 
   \"@context\": \[
@@ -191,12 +196,13 @@ Use this part in body:
   }
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{PROVIDER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -204,10 +210,11 @@ In response you will get correct output.
 
 Use this url with POST:
 
-{{PROVIDER_CONNECTOR_URL}}/management/v3/contractdefinitions
+`{{PROVIDER_CONNECTOR_URL}}/management/v3/contractdefinitions`
 
 Use this part in body
 
+```
 {
 
   \"@context\": {},
@@ -233,12 +240,13 @@ Use this part in body
   }
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{PROVIDER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{PROVIDER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -248,10 +256,11 @@ In response you will get correct output.
 
 Send catalog request via using this url with POST:
 
-{{CONSUMER_CONNECTOR_URL}}/management/v3/catalog/request
+`{{CONSUMER_CONNECTOR_URL}}/management/v3/catalog/request`
 
 Use this part in body:
 
+```
 {
 
     \"@context\": {
@@ -275,12 +284,13 @@ Use this part in body:
   }
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{CONSUMER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -290,10 +300,11 @@ In response you will get correct output.
 
 Use this url with POST:
 
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs
+`{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs`
 
 Use this part in body:
 
+```
 {
 
     \"@context\": \[
@@ -357,14 +368,15 @@ Use this part in body:
     \"callbackAddresses\": \[\]
 
 }
+```
 
-\*{{OFFER_ID}}: You got from previous step (catalog request)
+\*`{{OFFER_ID}}`: You got from previous step (catalog request)
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{CONSUMER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -372,10 +384,11 @@ In response you will get correct output.
 
 Use this url with POST:
 
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/request
+`{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/request`
 
 Use this part in body:
 
+```
 {
 
     \"@context\": {
@@ -401,12 +414,13 @@ Use this part in body:
     \]
 
 }
+```
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{CONSUMER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -414,15 +428,15 @@ In response you will get correct output.
 
 Use this url with GET:
 
-{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/{{transferProcessId}}/dataaddres
+`{{CONSUMER_CONNECTOR_URL}}/management/v3/edrs/{{transferProcessId}}/dataaddres`
 
-\*transferProcessId : You got from previous step
+\*`transferProcessId` : You got from previous step
 
 Use this part in Header:
 
-- Key: Content-Type Value: application/json
+- Key: `Content-Type` Value: `application/json`
 
-- Key: X-Api-Key Value: {{CONSUMER_X_API_KEY}}
+- Key: `X-Api-Key` Value: `{{CONSUMER_X_API_KEY}}`
 
 In response you will get correct output.
 
@@ -430,15 +444,15 @@ In response you will get correct output.
 
 Use GET with this url:
 
-{{endpoint}}
+`{{endpoint}}`
 
-\*endpoint: You got from previous step
+\*`{{endpoint}}`: You got from previous step
 
 Use this part in Header:
 
-- Key: Authorization Value
+- Key: `Authorization Value`
 
-  - \* {{authorization}} : You got from previous step
+  - \* `{{authorization}}` : You got from previous step
 
 In response you will get the data which provider shared with consumer
 
@@ -446,4 +460,4 @@ In response you will get the data which provider shared with consumer
 
 ### Tractusx-edc-management-api-walkthrough: <https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs/usage/management-api-walkthrough> {#tractusx-edc-management-api-walkthrough-httpsgithub.comeclipse-tractusxtractusx-edctreemaindocsusagemanagement-api-walkthrough}
 
-### Tractusx-edc-swagger-api-document: https://app.swaggerhub.com/apis/eclipse-tractusx-bot/tractusx-edc/0.9.0 {#tractusx-edc-swagger-api-document-httpsapp.swaggerhub.comapiseclipse-tractusx-bottractusx-edc0.9.0}
+### Tractusx-edc-swagger-api-document: <https://app.swaggerhub.com/apis/eclipse-tractusx-bot/tractusx-edc/0.9.0> {#tractusx-edc-swagger-api-document-httpsapp.swaggerhub.comapiseclipse-tractusx-bottractusx-edc0.9.0}
