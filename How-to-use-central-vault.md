@@ -9,40 +9,50 @@
 ## Generate token in GitHub
 
 - Firstly, user have to go to his/her GitHub user settings [GitHub Settings](https://github.com/settings/profile)
-  ![GitHub Settings Page](media/image1.png)
+
+  <img src="media/image1.png" alt="GitHub Settings Page" width="800" style="display: block; margin: 20px auto;">
 
 - Now user have to go to Developer settings. Then inside developer settings user have to go to Personal access tokens.
-  ![Developer Settings](media/image2.png)
+
+  <img src="media/image2.png" alt="Developer Settings" width="800" style="display: block; margin: 20px auto;">
 
 - Then user have to select Tokens (classic), and then click on generate new token.
-  ![Generate New Token](media/image3.png)
+
+  <img src="media/image3.png" alt="Generate New Token" width="800" style="display: block; margin: 20px auto;">
 
 - Now user will get the token which he/she have to use to log in into central vault. And then he/she have to go to central vault url.
 
 ## Login to central vault
 
 - URL for central vault: [Central Vault](https://vault.c-27d7c36.kyma.ondemand.com/)
-  ![Central Vault Login Page](media/image4.png)
+
+  <img src="media/image4.png" alt="Central Vault Login Page" width="800" style="display: block; margin: 20px auto;">
 
 ## See your secrets in central vault
 
 - After logging in to the central vault, the user will be able to see the following
-  ![Central Vault Dashboard](media/image5.png)
+
+  <img src="media/image5.png" alt="Central Vault Dashboard" width="800" style="display: block; margin: 20px auto;">
 
 - Then user have to click on secret/ and then he/she can able to see this:
-  ![Secrets Overview](media/image6.png)
+
+  <img src="media/image6.png" alt="Secrets Overview" width="800" style="display: block; margin: 20px auto;">
 
 - From here user can only able to see his/her assigned folder. If he/she will open any other folder then he/she will able to see
-  ![Access Denied](media/image7.png)
+
+  <img src="media/image7.png" alt="Access Denied" width="800" style="display: block; margin: 20px auto;">
 
 - When user will click on his/her folder then he/she can able to see:
-  ![User Folder](media/image8.png)
+
+  <img src="media/image8.png" alt="User Folder" width="800" style="display: block; margin: 20px auto;">
 
 - Then from here he/she can see any secrets. Example for apikey:
-  ![API Key Example](media/image9.png)
+
+  <img src="media/image9.png" alt="API Key Example" width="800" style="display: block; margin: 20px auto;">
 
 - Then he/she have to click on Secret and then he/she can able to see:
-  ![Secret Details](media/image10.png)
+
+  <img src="media/image10.png" alt="Secret Details" width="800" style="display: block; margin: 20px auto;">
 
 - From here he/she have to click on eye icon then he/she can able to see secrets
 
@@ -51,12 +61,15 @@
 - User can add his/her secret inside his/her assigned folder
 
 - To add secret user have to click on Create secret:
-  ![Create Secret Button](media/image11.png)
+
+  <img src="media/image11.png" alt="Create Secret Button" width="800" style="display: block; margin: 20px auto;">
 
 - Then user can able to see this:
-  ![Create Secret Form](media/image12.png)
+
+  <img src="media/image12.png" alt="Create Secret Form" width="800" style="display: block; margin: 20px auto;">
 
 - Here user have to write his/her secret name and then Secret data with key and value. And then user have to click on save button.
 
 - User can also turn on JSON-button to create the secret:
-  ![JSON Secret Creation](media/image13.png)
+
+  <img src="media/image13.png" alt="JSON Secret Creation" width="800" style="display: block; margin: 20px auto;">
