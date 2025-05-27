@@ -75,7 +75,7 @@ In response you will get correct output.
 
 Use this URL with POST:
 
-```http
+```
 {PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
 ```
 
@@ -108,7 +108,7 @@ In response you will get correct output.
 
 Use this URL with POST:
 
-```http
+```
 {PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
 ```
 
@@ -151,7 +151,7 @@ In response you will get correct output.
 
 Use this URL with POST:
 
-```http
+```
 {PROVIDER_CONNECTOR_URL}/management/v3/contractdefinitions
 ```
 
@@ -185,7 +185,7 @@ In response you will get correct output.
 
 Send catalog request via using this URL with POST:
 
-```http
+```
 {CONSUMER_CONNECTOR_URL}/management/v3/catalog/request
 ```
 
@@ -218,7 +218,7 @@ In response you will get correct output.
 
 Use this URL with POST:
 
-```http
+```
 {CONSUMER_CONNECTOR_URL}/management/v3/edrs
 ```
 
@@ -271,7 +271,7 @@ In response you will get correct output.
 
 Use this URL with POST:
 
-```http
+```
 {CONSUMER_CONNECTOR_URL}/management/v3/edrs/request
 ```
 
@@ -303,7 +303,7 @@ In response you will get correct output.
 
 Use this URL with GET:
 
-```http
+```
 {CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddres
 ```
 
@@ -319,7 +319,7 @@ In response you will get correct output.
 
 Use GET with this URL:
 
-```http
+```
 {endpoint}
 ```
 
