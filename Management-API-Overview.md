@@ -41,7 +41,7 @@ To follow the Management API walkthrough, both the provider and consumer will ne
 
 Use this URL with POST:
 
-```http
+```
 {PROVIDER_CONNECTOR_URL}/management/v3/assets
 ```
 
