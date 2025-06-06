@@ -2,7 +2,7 @@
 
 ## Video Tutorial
 
-[![Management API Overview](https://img.youtube.com/vi/https://www.youtube.com/watch?v=KMj0Y1pi5DE/0.jpg)](https://www.youtube.com/watch?v=https://www.youtube.com/watch?v=KMj0Y1pi5DE)
+[![Management API Walkthrough](https://img.youtube.com/vi/KMj0Y1pi5DE/0.jpg)](https://www.youtube.com/watch?v=KMj0Y1pi5DE)
 
 ## Additional Resources
 
