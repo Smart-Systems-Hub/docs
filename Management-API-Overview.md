@@ -335,3 +335,6 @@ In response you will get the data which provider shared with consumer.
 
 - [Tractusx-edc-management-api-walkthrough](https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs/usage/management-api-walkthrough)
 - [Tractusx-edc-swagger-api-document](https://app.swaggerhub.com/apis/eclipse-tractusx-bot/tractusx-edc/0.9.0)
+
+# Management API Walkthrough Introduction Video
+- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
