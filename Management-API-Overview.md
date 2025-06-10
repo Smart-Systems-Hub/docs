@@ -304,7 +304,7 @@ In response you will get correct output.
 Use this URL with GET:
 
 ```
-{CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddres
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddress
 ```
 
 > Note: `{transferProcessId}` is obtained from the previous step
