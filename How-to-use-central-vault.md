@@ -20,6 +20,10 @@
 
   <img src="media/image3.png" alt="Generate New Token" width="800" style="display: block; margin: 20px auto;">
 
+- From select scopes user have to select these scopes:
+  
+  <img src="media/image14.png" alt="Generate New Token" width="800" style="display: block; margin: 20px auto;">
+
 - Now user will get the token which he/she have to use to log in into central vault. And then he/she have to go to central vault url.
 
 ## Login to central vault
