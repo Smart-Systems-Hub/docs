@@ -1,6 +1,5 @@
 # How to Create Business Partner Group for Group Policy Scenario
 
-
 ## Create Business Partner Group
 
 We can create Business Partner Group with BPN numbers, so we do not have to create same policy for different BPN numbers.
@@ -8,7 +7,7 @@ We can create Business Partner Group with BPN numbers, so we do not have to crea
 To create business partner group we have to use POST with: 
 
 ```
-https://{{PROVIDER_CONNECTOR_URL}}/management/v3/business-partner-groups
+https://{PROVIDER_CONNECTOR_URL}/management/v3/business-partner-groups
 ```
 
 Use this part in body:
@@ -18,8 +17,8 @@ Use this part in body:
   "@context": {
     "tx": "https://w3id.org/tractusx/v0.0.1/ns/"
   },
-  "@id": "{{BPN_NUMBER_01}}",
-  "tx:groups": "{{GROUP_NAME}}"
+  "@id": "{BPN_NUMBER_01}",
+  "tx:groups": "{GROUP_NAME}"
 }
 ```
 
@@ -27,7 +26,7 @@ Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
 - Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
-Then use POST with same point: `https://{{PROVIDER_CONNECTOR_URL}}/management/v3/business-partner-groups` to add other BPN number in same group.
+Then use POST with same point: `https://{PROVIDER_CONNECTOR_URL}/management/v3/business-partner-groups` to add other BPN number in same group.
 
 With this body:
 
@@ -36,8 +35,8 @@ With this body:
   "@context": {
     "tx": "https://w3id.org/tractusx/v0.0.1/ns/"
   },
-  "@id": "{{BPN_NUMBER_02}}",
-  "tx:groups": "{{GROUP_NAME}}"
+  "@id": "{BPN_NUMBER_02}",
+  "tx:groups": "{GROUP_NAME}"
 }
 ```
 
@@ -45,28 +44,28 @@ Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
 - Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
-So based on above steps we created `{{GROUP_NAME}}` with BPN numbers: `{{BPN_NUMBER_01}}` and `{{BPN_NUMBER_02}}`.
+So based on above steps we created `{GROUP_NAME}` with BPN numbers: `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`.
 
 ## Check the Business Partner Group
 
 To check this use GET with this endpoint:
 
 ```
-https://{{PROVIDER_CONNECTOR_URL}}/management/v3/business-partner-groups/{{BPN_NUMBER_01}}
+https://{PROVIDER_CONNECTOR_URL}/management/v3/business-partner-groups/{BPN_NUMBER_01}
 ```
 
 Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
 - Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
-And in response you will able to see: `{{BPN_NUMBER_01}}` with `{{GROUP_NAME}}`
+And in response you will able to see: `{BPN_NUMBER_01}` with `{GROUP_NAME}`
 
 ## Create Group Access Policy
 
 To create group access policy use POST with this endpoint:
 
 ```
-https://{{PROVIDER_CONNECTOR_URL}}/management/v3/policydefinitions
+https://{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
 ```
 With this body:
 
@@ -80,7 +79,7 @@ With this body:
     }
   ],
   "@type": "PolicyDefinition",
-  "@id": "{{ACCESS_POLICY_ID}}",
+  "@id": "{ACCESS_POLICY_ID}",
   "policy": {
     "@type": "Set",
     "permission": [
@@ -89,7 +88,7 @@ With this body:
         "constraint": {
           "leftOperand": "BusinessPartnerGroup",
           "operator": "eq",
-          "rightOperand": "{{GROUP_NAME}}"
+          "rightOperand": "{GROUP_NAME}"
         }
       }
     ]
@@ -101,9 +100,9 @@ Use this part in Header:
 - Key: `Content-Type` Value: `application/json`
 - Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
 
-Then you have to use this `{{ACCESS_POLICY}}` in contract definition. 
+Then you have to use this `{ACCESS_POLICY}` in contract definition. 
 
-### Based on above steps we created group policy for `{{BPN_NUMBER_01}}` and `{{BPN_NUMBER_02}}`. So, we do not have to create same policy individually for `{{BPN_NUMBER_01}}` and `{{BPN_NUMBER_02}}`.
+### Based on above steps we created group policy for `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`. So, we do not have to create same policy individually for `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`.
 
 # Documentation for Business Partner Group from Tractusx-edc
 
