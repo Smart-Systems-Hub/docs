@@ -150,6 +150,9 @@ In response you will get correct output.
 If user want to create Business partner group policy then please follow the steps from here: 
 [How to Create Business Partner Group for Group Policy Scenario](https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html)
 
+If user want to use Dismantler in policy then please follow the steps from here:
+[How to use Dismantler Scenario in Usage/Contract policy](https://smart-systems-hub.github.io/docs/How-to-use-Dismantler-Scenario-in-Policy.html)
+
 ### Creating a Contract Definition
 
 Use this URL with POST:
