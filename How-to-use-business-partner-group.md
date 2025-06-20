@@ -104,6 +104,9 @@ Then you have to use this `{ACCESS_POLICY}` in contract definition.
 
 ### Based on above steps we created group policy for `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`. So, we do not have to create same policy individually for `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`.
 
+## To follow the whole Management API walkthrough please follow this document:
+- [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+
 ## Documentation for Business Partner Group from Tractusx-edc
 
 - [Only-let-a-Business-Partner-Group-pass](https://github.com/eclipse-tractusx/tractusx-edc/blob/main/docs/usage/management-api-walkthrough/02_policies.md#:~:text=Only%20let%20a%20Business%20Partner%20Group%20pass)

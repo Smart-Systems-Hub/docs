@@ -183,6 +183,9 @@ In response you will get correct output.
 
 ### Then use this `{USAGE_POLICY_ID}` and `{ACCESS_POLICY_ID}` in Create contract definition.
 
+## To follow the whole Management API walkthrough please follow this document:
+- [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+
 ## Documentation for Dismantler in Tractusx-edc
 
 - [How-to-use-dismantler](https://github.com/eclipse-tractusx/tractusx-edc/blob/main/docs/usage/management-api-walkthrough/02_policies.md#:~:text=the%20Traceability%20Credential.-,Scenario%202,-Partner%201%20wants)
