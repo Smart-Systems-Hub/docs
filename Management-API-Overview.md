@@ -147,7 +147,7 @@ Use this part in Header:
 
 In response you will get correct output.
 
-If you want to create Business partner group policy then please follow the steps from here: 
+If user want to create Business partner group policy then please follow the steps from here: 
 [How to Create Business Partner Group for Group Policy Scenario](https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html)
 
 ### Creating a Contract Definition
