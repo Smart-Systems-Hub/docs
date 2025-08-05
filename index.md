@@ -8,6 +8,10 @@
 - [How to Create a Business Partner Group for Group Policy Scenario Video](Business-partner-group-video.md)
 - [How to use Dismantler Scenario in Usage/Contract policy](How-to-use-Dismantler-Scenario-in-Policy.md)
 
+### Factory-X EDC Connectors:
+
+- [Management API Walkthrough](Management-API-Overview-FX-connectors.md)
+
 ### Central vault:
 - [How to use Central vault](How-to-use-central-vault.md)
 
