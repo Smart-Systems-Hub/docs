@@ -1,4 +1,4 @@
-# How to Use the Dismantler Policy Scenario Video
+# How to Use the Dismantler Scenario in Usage/Contract Policy Video
 
 ## Video Tutorial
 

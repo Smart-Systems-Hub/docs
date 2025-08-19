@@ -7,7 +7,7 @@
 - [How to Create Business Partner Group for Group Policy Scenario](How-to-use-business-partner-group.md)
 - [How to Create a Business Partner Group for Group Policy Scenario Video](Business-partner-group-video.md)
 - [How to use Dismantler Scenario in Usage/Contract policy](How-to-use-Dismantler-Scenario-in-Policy.md)
-- [How to Use the Dismantler Policy Scenario Video](Dismantler-policy-scenario.md)
+- [How to Use the Dismantler Policy Scenario Video](Dismantler-policy-scenario-video.md)
 
 ### Factory-X EDC Connectors:
 
