@@ -164,9 +164,12 @@ For the remaining EDR steps—retrieving EDR entries from the Consumer Control P
 ## For a complete Management API walkthrough, please refer to:
 - [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
 
+## Management API Walkthrough Introduction Video
+- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
+
+## Business Partner Group Introduction Video
+[How to Create a Business Partner Group for Group Policy Scenario Video](https://smart-systems-hub.github.io/docs/Business-partner-group-video.html)
+
 ## Documentation for Business Partner Group from TractusX EDC
 
 - [Only let a Business Partner Group pass](https://github.com/eclipse-tractusx/tractusx-edc/blob/main/docs/usage/management-api-walkthrough/02_policies.md#:~:text=Only%20let%20a%20Business%20Partner%20Group%20pass)
-
-# Management API Walkthrough Introduction Video
-- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)

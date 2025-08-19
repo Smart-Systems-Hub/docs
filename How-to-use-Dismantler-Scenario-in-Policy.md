@@ -186,7 +186,13 @@ In response you will get correct output.
 ## To follow the whole Management API walkthrough please follow this document:
 - [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
 
+## Management API Walkthrough Introduction Video
+- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
+
+## Dismantler Scenario Introduction Video
+[How to Use the Dismantler Policy Scenario Video](https://smart-systems-hub.github.io/docs/Dismantler-policy-scenario.html)
+
 ## Documentation for Dismantler in Tractusx-edc
 
-- [How-to-use-dismantler](https://github.com/eclipse-tractusx/tractusx-edc/blob/main/docs/usage/management-api-walkthrough/02_policies.md#:~:text=the%20Traceability%20Credential.-,Scenario%202,-Partner%201%20wants)
+- [How to Use Dismantler](https://github.com/eclipse-tractusx/tractusx-edc/blob/main/docs/usage/management-api-walkthrough/02_policies.md#:~:text=the%20Traceability%20Credential.-,Scenario%202,-Partner%201%20wants)
 
