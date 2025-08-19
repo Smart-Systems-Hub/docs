@@ -1,5 +1,9 @@
 # Smart Systems Hub - Manufacturing-X Learn and Explore Environment
 
+### General Information:
+
+- [Manufacturing-X](https://www.smart-systems-hub.de/en/manufacturing-x)
+
 ### Tractus-X EDC Connector:
 
 - [Management API Walkthrough](Management-API-Overview.md)
