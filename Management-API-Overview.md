@@ -69,6 +69,9 @@ Use this part in Header:
 
 In response you will get correct output.
 
+#### If the provider's endpoint is secured with OAuth 2, then please create asset like this:
+-[How to create an asset if the provider's endpoint is secured with OAuth 2](How-to-work-with-oauth2-configure-endpoint.md)
+
 ### Policies
 
 #### Add Usage/contract policy in provider (Define how the data can be used)
