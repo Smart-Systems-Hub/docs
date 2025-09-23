@@ -23,3 +23,10 @@
 
 ### Asset Administration Shell (AAS):
 - [Asset Administration Shell Introduction](Asset-Administration-Shell-Introduction.md)
+
+### FAQ
+
+<details>
+  <summary>How do I create an asset when the provider's endpoint is secured with OAuth 2?</summary>
+  See the guide: <a href="How-to-work-with-oauth2-configure-endpoint.md">How to work with OAuth2 configure endpoint</a>.
+</details>
