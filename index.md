@@ -3,6 +3,7 @@
 ### General Information:
 
 - [Manufacturing-X](https://www.smart-systems-hub.de/en/manufacturing-x)
+- [FAQ](#faq)
 
 ### Tractus-X EDC Connector:
 
@@ -24,9 +25,9 @@
 ### Asset Administration Shell (AAS):
 - [Asset Administration Shell Introduction](Asset-Administration-Shell-Introduction.md)
 
-### FAQ
+# FAQ
 
 <details>
   <summary>How do I create an asset when the provider's endpoint is secured with OAuth 2?</summary>
-  See the guide: <a href="How-to-work-with-oauth2-configure-endpoint.md">How to work with OAuth2 configure endpoint</a>.
+  See the guide: <a href="https://smart-systems-hub.github.io/docs/How-to-work-with-oauth2-configure-endpoint.html">How to work with OAuth2 configure endpoint</a>.
 </details>
