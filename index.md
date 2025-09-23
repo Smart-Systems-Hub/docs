@@ -28,6 +28,6 @@
 # FAQ
 
 <details>
-  <summary>How do I create an asset when the provider's endpoint is secured with OAuth 2?</summary>
-  See the guide: <a href="https://smart-systems-hub.github.io/docs/How-to-work-with-oauth2-configure-endpoint.html">How to work with OAuth2 configure endpoint</a>.
+  <summary>What is the role of Smart Systems Hub for Manufacturing-X ?</summary>
+  <a href="https://www.smart-systems-hub.de/en/manufacturing-x">Manufacturing-X</a>.
 </details>
