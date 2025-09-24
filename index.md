@@ -79,3 +79,51 @@
 
   <p><strong>You can also follow this document to make a catalog request: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=Consumer-,Catalog,-Send%20catalog%20request">How to make a catalog request</a>.</strong></p>
 </details>
+
+<details>
+  <summary>Why is Data Access not working?</summary>
+  <p>After the EDR has been negotiated and stored, you can fetch data. Common errors include HTTP 500 and 403. Below are common causes and how to resolve them:</p>
+
+  <p><strong>Cause 1: Provider endpoint is not working correctly</strong></p>
+  <p>Ensure you set the correct provider base URL during asset creation and that the endpoint is reachable; otherwise, you may receive a 500 Internal Server Error.</p>
+
+  <p><strong>Cause 2: OAuth 2 endpoint not defined correctly during asset creation</strong></p>
+  <pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=ISO-8859-1&quot; /&gt;
+    &lt;title&gt;Error 500 Internal Server Error&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTTP ERROR 500 Internal Server Error&lt;/h2&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;URI:&lt;/th&gt;
+            &lt;td&gt;/api/public&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;STATUS:&lt;/th&gt;
+            &lt;td&gt;500&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;MESSAGE:&lt;/th&gt;
+            &lt;td&gt;Internal Server Error&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;SERVLET:&lt;/th&gt;
+            &lt;td&gt;EDC-public&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+  <p>You may see the above 500 response when the provider endpoint is secured with OAuth 2 but the asset was created without OAuth 2 credentials. Create the asset with OAuth 2 credentials configured. See: <a href="https://smart-systems-hub.github.io/docs/How-to-work-with-oauth2-configure-endpoint.html">How to create an asset if the provider’s endpoint is secured with OAuth 2</a>.</p>
+
+  <p><strong>Cause 3: Token has expired</strong></p>
+  <pre><code class="language-json">{
+  "errors": [
+    "Token has expired (exp)"
+  ]
+}
+  </code></pre>
+  <p>This typically results in a 403 response. Access tokens expire after 5 minutes; generate a new token and include it in the Authorization header.</p>
+</details>
