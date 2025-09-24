@@ -74,6 +74,39 @@ In response you will get correct output.
 
 ### Policies
 
+#### Add Access policy in provider
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": [
+    "https://w3id.org/tractusx/edc/v0.0.1",
+    "http://www.w3.org/ns/odrl.jsonld",
+    {
+      "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+    }
+  ],
+  "@type": "PolicyDefinition",
+  "@id": "{ACCESS_POLICY_ID}",
+  "policy": {
+    "@type": "Set"
+  }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
 #### Add Usage/contract policy in provider (Define how the data can be used)
 
 Use this URL with POST:
@@ -95,39 +128,6 @@ Use this part in body:
   ],
   "@type": "PolicyDefinition",
   "@id": "{USAGE_POLICY_ID}",
-  "policy": {
-    "@type": "Set"
-  }
-}
-```
-
-Use this part in Header:
-- Key: `Content-Type` Value: `application/json`
-- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
-
-In response you will get correct output.
-
-#### Add access policy in provider
-
-Use this URL with POST:
-
-```
-{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
-```
-
-Use this part in body:
-
-```json
-{
-  "@context": [
-    "https://w3id.org/tractusx/edc/v0.0.1",
-    "http://www.w3.org/ns/odrl.jsonld",
-    {
-      "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
-    }
-  ],
-  "@type": "PolicyDefinition",
-  "@id": "{ACCESS_POLICY_ID}",
   "policy": {
     "@type": "Set",
     "permission": [
