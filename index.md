@@ -56,11 +56,11 @@
   <p><strong>Cause 2: Wrong DSP URL in the counterparty address</strong></p>
   <pre><code class="language-json">[
     {
-    "message": "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html;charset=ISO-8859-1\"/>\n<title>Error 404 Not Found</title>\n</head>\n<body><h2>HTTP ERROR 404 Not Found</h2>\n<table>\n<tr><th>URI:</th><td>/api/v1/dsp/catalog/request</td></tr>\n<tr><th>STATUS:</th><td>404</td></tr>\n<tr><th>MESSAGE:</th><td>Not Found</td></tr>\n<tr><th>SERVLET:</th><td>EDC-default</td></tr>\n</table>\n\n</body>\n</html>\n",
-    "type": "BadGateway",
-    "path": null,
-    "invalidValue": null
-  }
+      "message": "&lt;html&gt;\n&lt;head&gt;\n&lt;meta http-equiv=\"Content-Type\" content=\"text/html;charset=ISO-8859-1\"/&gt;\n&lt;title&gt;Error 404 Not Found&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;&lt;h2&gt;HTTP ERROR 404 Not Found&lt;/h2&gt;\n&lt;table&gt;\n&lt;tr&gt;&lt;th&gt;URI:&lt;/th&gt;&lt;td&gt;/api/v1/dsp/catalog/request&lt;/td&gt;&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;STATUS:&lt;/th&gt;&lt;td&gt;404&lt;/td&gt;&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;MESSAGE:&lt;/th&gt;&lt;td&gt;Not Found&lt;/td&gt;&lt;/tr&gt;\n&lt;tr&gt;&lt;th&gt;SERVLET:&lt;/th&gt;&lt;td&gt;EDC-default&lt;/td&gt;&lt;/tr&gt;\n&lt;/table&gt;\n\n&lt;/body&gt;\n&lt;/html&gt;\n",
+      "type": "BadGateway",
+      "path": null,
+      "invalidValue": null
+    }
   ]
   </code></pre>
   <p>Verify you are using the correct DSP URL for the counterparty.</p>
@@ -77,5 +77,5 @@
   </code></pre>
   <p>Confirm that the BPN and its corresponding DID entry are present in the BDRS and that the BDRS service is reachable.</p>
 
-  <p>You can also follow this document to make a catalog request: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=Consumer-,Catalog,-Send%20catalog%20request">How to make a catalog request</a>.</p>
+  <p><strong>You can also follow this document to make a catalog request: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=Consumer-,Catalog,-Send%20catalog%20request">How to make a catalog request</a>.</strong></p>
 </details>
