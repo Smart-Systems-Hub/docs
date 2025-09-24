@@ -29,7 +29,7 @@
 
 <details>
   <summary>What is the role of Smart Systems Hub for Manufacturing-X?</summary>
-  Smart Systems Hub supports useres to onboarding for Manufacturing-X based on Explore & Learn environment. Learn more: <a href="https://www.smart-systems-hub.de/en/manufacturing-x">Manufacturing-X</a>.
+  Smart Systems Hub supports users with onboarding to Manufacturing-X based on the Explore & Learn environment. Learn more: <a href="https://www.smart-systems-hub.de/en/manufacturing-x">Manufacturing-X</a>.
 </details>
 
 <details>
@@ -40,22 +40,14 @@
 <details>
   <summary>Why is the catalog request not working?</summary>
   Many users encounter a 502 Bad Gateway with a response like:
-  ```json
-    [
-
-        {
-
-            "message": "Unable to obtain credentials: Failed to fetch client secret from the vault with alias: edc-client-secret",
-
-            "type": "BadGateway",
-
-            "path": null,
-
-            "invalidValue": null
-
-        }
-
-    ]
-  ```
+  <pre><code class="language-json">[
+    {
+      "message": "Unable to obtain credentials: Failed to fetch client secret from the vault with alias: edc-client-secret",
+      "type": "BadGateway",
+      "path": null,
+      "invalidValue": null
+    }
+  ]
+  </code></pre>
   This usually happens because the client secret is missing in the vault, or the connector cannot read secrets from the vault. Please verify that the secret exists in the vault and that the connector has access to it.
 </details>
