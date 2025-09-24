@@ -47,6 +47,17 @@
 </details>
 
 <details>
+  <summary>Which policies can a user create?</summary>
+  <p>You typically need to define Usage and Access policies. See: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=with%20OAuth%202-,Policies,-Add%20Access%20policy">How to create policies</a>.</p>
+
+  <p><strong>Can I create a group policy?</strong></p>
+  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html">How to Create a Business Partner Group for Group Policy Scenarios</a>.</p>
+
+  <p><strong>Can I create a policy with a Dismantler constraint?</strong></p>
+  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-Dismantler-Scenario-in-Policy.html">How to use Dismantler Scenario in Usage/Contract policy</a>.</p>
+</details>
+
+<details>
   <summary>Why is the catalog request not working?</summary>
   <p>Below are common causes and how to resolve them:</p>
 
@@ -138,12 +149,11 @@
 </details>
 
 <details>
-  <summary>Which policies can a user create?</summary>
-  <p>You typically need to define Usage and Access policies. See: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=with%20OAuth%202-,Policies,-Add%20Access%20policy">How to create policies</a>.</p>
+  <summary>Is it possible to request a refreshed database for the connector?</summary>
+  <p>Yes. Please contact Smart Systems Hub to request a database refresh for your connector; they will provide a refreshed database as needed.</p>
+</details>
 
-  <p><strong>Can I create a group policy?</strong></p>
-  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html">How to Create a Business Partner Group for Group Policy Scenarios</a>.</p>
-
-  <p><strong>Can I create a policy with a Dismantler constraint?</strong></p>
-  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-Dismantler-Scenario-in-Policy.html">How to use Dismantler Scenario in Usage/Contract policy</a>.</p>
+<details>
+  <summary>Can a user delete unwanted secrets from the vault?</summary>
+  <p>Yes. Contact Smart Systems Hub to request an update to your policy that grants delete permissions. Once updated, you can delete the unwanted secrets from the vault.</p>
 </details>
