@@ -33,6 +33,15 @@
 </details>
 
 <details>
+  <summary>Which connectors does Smart Systems Hub provide?</summary>
+  <p>Smart Systems Hub provides the following connectors:</p>
+  <ul>
+    <li>Tractus-X EDC</li>
+    <li>Factory-X EDC</li>
+  </ul>
+</details>
+
+<details>
   <summary>Is it possible to deploy a connector in my own environment?</summary>
   Yes, it's absolutely possible. Smart Systems Hub provides wallets and identities that you can use to deploy a Tractus-X EDC or a Factory-X EDC in your own environment.
 </details>
@@ -126,4 +135,15 @@
 }
   </code></pre>
   <p>This typically results in a 403 response. Access tokens expire after 5 minutes; generate a new token and include it in the Authorization header.</p>
+</details>
+
+<details>
+  <summary>Which policies can a user create?</summary>
+  <p>You typically need to define Usage and Access policies. See: <a href="https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=with%20OAuth%202-,Policies,-Add%20Access%20policy">How to create policies</a>.</p>
+
+  <p><strong>Can I create a group policy?</strong></p>
+  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html">How to Create a Business Partner Group for Group Policy Scenarios</a>.</p>
+
+  <p><strong>Can I create a policy with a Dismantler constraint?</strong></p>
+  <p>Yes, it's absolutely possible. See: <a href="https://smart-systems-hub.github.io/docs/How-to-use-Dismantler-Scenario-in-Policy.html">How to use Dismantler Scenario in Usage/Contract policy</a>.</p>
 </details>
