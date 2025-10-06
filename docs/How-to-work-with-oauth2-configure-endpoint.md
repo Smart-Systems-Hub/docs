@@ -38,7 +38,7 @@ Set the following headers:
 ### All other steps (create policies, create a contract definition, request a catalog, obtain EDRs, request EDRs, start a transfer process, data transfer) remain the same
 
 ## To follow the complete Management API walkthrough, see:
-- [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+- [Management API Overview](Management-API-Overview.md)
 
 ## Management API walkthrough introduction video
-- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
+- [Management API Walkthrough Video](Management-API-Overview-video.md)

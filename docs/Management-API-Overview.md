@@ -70,9 +70,9 @@ Use this part in Header:
 In response you will get correct output.
 
 #### If the provider's endpoint is secured with OAuth 2, then please create asset like this:
-[How to create an asset if the provider's endpoint is secured with OAuth 2](https://smart-systems-hub.github.io/docs/How-to-work-with-oauth2-configure-endpoint.html)
+[How to create an asset if the provider's endpoint is secured with OAuth 2](How-to-work-with-oauth2-configure-endpoint.md)
 
-### Policies
+### Policies {#policies-section}
 
 #### Add Access policy in provider
 
@@ -151,12 +151,12 @@ Use this part in Header:
 In response you will get correct output.
 
 #### If user want to create Business partner group policy then please follow the steps from here: 
-[How to Create Business Partner Group for Group Policy Scenario](https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html)
+[How to Create Business Partner Group for Group Policy Scenario](How-to-use-business-partner-group.md)
 
 #### If user want to use Dismantler in policy then please follow the steps from here:
-[How to use Dismantler Scenario in Usage/Contract policy](https://smart-systems-hub.github.io/docs/How-to-use-Dismantler-Scenario-in-Policy.html)
+[How to use Dismantler Scenario in Usage/Contract policy](How-to-use-Dismantler-Scenario-in-Policy.md)
 
-### Creating a Contract Definition
+### Creating a Contract Definition {#contractdefinition-section}
 
 Use this URL with POST:
 
@@ -190,7 +190,7 @@ In response you will get correct output.
 
 ## Consumer
 
-### Catalog
+### Catalog {#catalog-section}
 
 Send catalog request via using this URL with POST:
 
@@ -221,7 +221,7 @@ Use this part in Header:
 
 In response you will get correct output.
 
-### EDRs
+### EDRs {#EDRS-section}
 
 #### Receiving the EDR
 
@@ -346,4 +346,4 @@ In response you will get the data which provider shared with consumer.
 - [Tractusx-edc-swagger-api-document](https://app.swaggerhub.com/apis/eclipse-tractusx-bot/tractusx-edc/0.9.0)
 
 # Management API Walkthrough Introduction Video
-- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
+- [Management API Walkthrough Video](Management-API-Overview-video.md)

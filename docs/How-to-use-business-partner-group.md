@@ -98,10 +98,10 @@ Set the same headers as above.
 By following these steps, you have created a group policy for `{BPN_NUMBER_01}` and `{BPN_NUMBER_02}`. This means you do not need to create individual policies for each BPN.
 
 You will then need to use this `{ACCESS_POLICY}` in your contract definition. To create a contract definition, follow the steps described here:
-- [Creating a Contract Definition](https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=Creating%20a%20Contract%20Definition)
+- [Creating a Contract Definition](./Management-API-Overview#contractdefinition-section)
 
 On the consumer side, users should follow the same steps for catalog requests as described here:
-- [Catalog](https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=Consumer-,Catalog,-Send%20catalog%20request)
+- [Catalog request](./Management-API-Overview#catalog-section)
 
 ## EDRs (Endpoint Data References)
 
@@ -159,16 +159,16 @@ Set the following headers:
 You will receive the appropriate response.
 
 For the remaining EDR steps—retrieving EDR entries from the Consumer Control Plane, extracting the EDR, and using the EDR for data access—please follow the steps described here:
-- [Remaining steps of EDRs](https://smart-systems-hub.github.io/docs/Management-API-Overview.html#:~:text=get%20correct%20output.-,EDRs,-Receiving%20the%20EDR)
+- [Remaining steps of EDRs](./Management-API-Overview#EDRS-section)
 
 ## For a complete Management API walkthrough, please refer to:
-- [Management API Overview](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+- [Management API Overview](Management-API-Overview.md)
 
 ## Management API Walkthrough Introduction Video
-- [Management API Walkthrough Video](https://smart-systems-hub.github.io/docs/Management-API-Overview-video.html)
+- [Management API Walkthrough Video](Management-API-Overview-video.md)
 
 ## Business Partner Group Introduction Video
-[How to Create a Business Partner Group for Group Policy Scenario Video](https://smart-systems-hub.github.io/docs/Business-partner-group-video.html)
+[How to Create a Business Partner Group for Group Policy Scenario Video](Business-partner-group-video.md)
 
 ## Documentation for Business Partner Group from TractusX EDC
 

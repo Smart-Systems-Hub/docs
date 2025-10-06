@@ -7,7 +7,7 @@
 ## Additional Resources
 
 If you need a detailed template for how to use Business Partner Group for Group Policy Scenarios, then please read our comprehensive documentation:
-[How to Create a Business Partner Group for Group Policy Scenarios](https://smart-systems-hub.github.io/docs/How-to-use-business-partner-group.html)
+[How to Create a Business Partner Group for Group Policy Scenarios](How-to-use-business-partner-group.md)
 
 If you need a detailed Management API walkthrough template, please read our comprehensive documentation:
-[Management API Overview Documentation](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+[Management API Overview Documentation](Management-API-Overview.md)

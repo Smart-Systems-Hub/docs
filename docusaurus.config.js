@@ -14,11 +14,11 @@ const projectName = "docs";
 const config = {
   title: 'Smart-Systems-Hub Manufacturing-X',
   tagline: 'Learn & Explore Environment',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/smartsystemshub-favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
   // Set the production url of your site here
@@ -26,16 +26,11 @@ const config = {
   baseUrl: `/${projectName}/`,
   trailingSlash: false,
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName, // Usually your GitHub org/user name.
-  projectName, // Usually your repo name.
+  organizationName,
+  projectName,
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -47,27 +42,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs',
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -78,28 +57,27 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Manufacturing-X',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Manufacturing-X Logo',
+          src: 'img/Smart-Systems-Hub_Logo_144ppi.png',
         },
         items: [
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { type: 'doc', docId: 'faq', label: 'FAQ', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://www.smart-systems-hub.de/en/home',
+            label: 'Smart-Systems-Hub',
             position: 'right',
           },
         ],
@@ -108,46 +86,23 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Smart-Systems-Hub',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Manufacturing-X',
+                href: 'https://www.smart-systems-hub.de/en/manufacturing-x',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Legal',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
+              { label: 'Privacy', href: 'https://www.smart-systems-hub.de/en/privacy' },
+              { label: 'Imprint', href: 'https://www.smart-systems-hub.de/en/imprint' },
+              { label: 'GTC', href: 'https://www.smart-systems-hub.de/en/agb' },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

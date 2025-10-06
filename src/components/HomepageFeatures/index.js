@@ -5,45 +5,60 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    ImgSrc: require('@site/static/img/smartsystemshub-easy-to-use.jpg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        <p>
+          Our goal is to reduce complexity. With the experimental field, companies do not have to deal with data exchange formats, authentication,
+          and authorization processes; we provide these components ready-to-use. Each participant can use identities and wallets, and connectors are
+          also provided that are used exclusively for their own use case.
+        </p>
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Tech Facts',
+    ImgSrc: require('@site/static/img/smartsystemshub-lp-manufacturingx-stageheader_v1.jpg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        <ul style={{textAlign: 'left', display: 'inline-block'}}>
+          <li>Open source components (Tractus-X EDC, Digital Twin Registry)</li>
+          <li>Identity & authentication management via Smart Systems Hub</li>
+          <li>Exchange of information regardless of the type and content of the data</li>
+        </ul>
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Use Cases',
+    ImgSrc: require('@site/static/img/smartsystemshub-lp-manufacturingx-graphic-usecases_v1.jpg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        <ul style={{textAlign: 'left', display: 'inline-block'}}>
+          <li>Traceability</li>
+          <li>Carbon Footprint Management</li>
+          <li>Circular Economy</li>
+          <li>Condition Monitoring led Services</li>
+          <li>Manufacturing as a Service — On‑demand Manufacturing</li>
+        </ul>
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({Svg, ImgSrc, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        {Svg ? (
+          <Svg className={styles.featureSvg} role="img" />
+        ) : ImgSrc ? (
+          <img src={ImgSrc} alt={title} className={styles.featureSvg} />
+        ) : null}
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+        {description}
       </div>
     </div>
   );
