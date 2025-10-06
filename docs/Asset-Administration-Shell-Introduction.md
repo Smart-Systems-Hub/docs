@@ -3,7 +3,7 @@
 ## **What is AAS (Asset Administration Shell)?**
 
 The Asset Administration Shell (AAS) is like a digital ID card or
-digital twin for a physical object (an \"asset\") in a smart factory ---
+digital twin for a physical object (an "asset") in a smart factory ---
 such as a machine, sensor, or even a software system.
 
 In simple word: Think of AAS as a digital wrapper around a machine or
@@ -81,3 +81,4 @@ You have a CNC machine. Its AAS might contain:
 -   A submodel for predictive maintenance
 
 Each one is a plug-in module of data, reusable and standardized.
+

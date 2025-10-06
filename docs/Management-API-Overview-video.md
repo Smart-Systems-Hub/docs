@@ -7,4 +7,4 @@
 ## Additional Resources
 
 If you need a detailed Management API walkthrough template, please read our comprehensive documentation:
-[Management API Overview Documentation](https://smart-systems-hub.github.io/docs/Management-API-Overview.html)
+[Management API Overview Documentation](Management-API-Overview.md)
