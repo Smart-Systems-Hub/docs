@@ -17,9 +17,17 @@
 const sidebars = {
   tutorialSidebar: [
     {
-      type: 'doc',
-      id: 'index',
+      type: 'category',
       label: 'Overview',
+      link: {
+        type: 'generated-index',
+        description: 'Guides and references for Overview.',
+        slug: '/overview',
+      },
+      items: [
+        'index',
+        'How-to-deploy-EDC'
+      ]
     },
     {
       type: 'category',
