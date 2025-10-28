@@ -45,6 +45,7 @@ const sidebars = {
         'Business-partner-group-video',
         'How-to-use-Dismantler-Scenario-in-Policy',
         'Dismantler-policy-scenario-video',
+        'How-to-migrate-to-0-11-0',
       ],
     },
     {
