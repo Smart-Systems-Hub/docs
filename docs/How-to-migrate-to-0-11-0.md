@@ -12,4 +12,4 @@ Smart-Systems-Hub will then apply the required changes in your `values.yaml` fil
 
 > **Note:** Your connector endpoint and other details will remain the same. Your assets, policies, etc., will remain unchanged.
 
-> **Note:** If you are working with Tractus-X EDC 0.11.0, you must use the updated Management API walkthrough. To follow the walkthrough for Tractus-X EDC 0.11.0, see: [How to follow the Management API Walkthrough for 0.11.0](Management-API-Overview-0-11-0.md)
+> **Note:** If you are working with Tractus-X EDC 0.11.0, you must use the updated Management API walkthrough.
