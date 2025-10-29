@@ -340,10 +340,13 @@ Use this part in Header:
 
 In response you will get the data which provider shared with consumer.
 
-# Documentation for Management API Walkthrough
+## Documentation for Management API Walkthrough
 
 - [Tractusx-edc-management-api-walkthrough](https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs/usage/management-api-walkthrough)
 - [Tractusx-edc-swagger-api-document](https://app.swaggerhub.com/apis/eclipse-tractusx-bot/tractusx-edc/0.9.0)
 
-# Management API Walkthrough Introduction Video
+## Management API Walkthrough Introduction Video
 - [Management API Walkthrough Video](Management-API-Overview-video.md)
+
+## Management API Walkthrough with Tractus-X 0.11.0 version
+- [Management API Walkthrough](Management-API-Overview-0-11-0.md)

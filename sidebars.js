@@ -40,6 +40,7 @@ const sidebars = {
       items: [
         'Management-API-Overview',
         'Management-API-Overview-video',
+        'Management-API-Overview-0-11-0',
         'How-to-work-with-oauth2-configure-endpoint',
         'How-to-use-business-partner-group',
         'Business-partner-group-video',
