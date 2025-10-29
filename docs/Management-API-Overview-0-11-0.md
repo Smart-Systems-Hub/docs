@@ -1,0 +1,604 @@
+# Management API Overview for Tractus-X EDC version 0.11.0
+
+With the help of this document, you will gain an overview of how a provider can share data with a consumer via Tractus-X EDC version 0.11.0.
+>**Note:** If you are still using old version of Tractus-X EDC and want to migrate to 0.11.0 version then please contact Smart-Systems-Hub. 
+
+Throughout this document, you will encounter several elements that need to be used, such as:
+
+- `provider_url`
+- `provider_bpn` / `provider_did`
+- `provider_dsp_endpoint`
+- `consumer_url`
+- `consumer_bpn` / `consumer_did`
+- `x-api-key` for provider connector
+- `x-api-key` for consumer connector
+
+No worries---you can get all the required information within the Smart Systems Hub -- Learn and Explore environment.
+
+To follow the Management API walkthrough, both the provider and consumer will need to complete a few steps, which are detailed in the following sections.
+
+## Provider
+
+1. Create an Asset
+2. Policies
+   - Create Usage Policy
+   - Create Access Policy
+3. Create a Contract Definition
+
+## Consumer
+
+1. Fetching a Provider's Catalog
+2. EDRs
+   - Receiving the EDR
+   - Retrieving EDR entries from the Consumer Control Plane
+   - Pull out the EDR
+   - Use EDR for Data Access
+
+# Management API Walkthrough
+
+## Provider
+
+### Create an Asset
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/assets
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {},
+  "@type": "Asset",
+  "@id": "{ASSET_ID}",
+  "properties": {
+    "description": "{DESCRIPTION_FOR_ASSET}"
+  },
+  "dataAddress": {
+    "@type": "DataAddress",
+    "type": "{SUPPORTED_TYPE}",
+    "baseUrl": "{API_PUBLIC_URL}"
+  }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
+#### If the provider's endpoint is secured with OAuth 2, then please create asset like this:
+[How to create an asset if the provider's endpoint is secured with OAuth 2](How-to-work-with-oauth2-configure-endpoint.md)
+
+### Policies
+
+#### Add Access policy in provider
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": [
+        "https://w3id.org/catenax/2025/9/policy/odrl.jsonld",
+        "https://w3id.org/catenax/2025/9/policy/context.jsonld",
+        {
+            "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+        }
+    ],
+  "@type": "PolicyDefinition",
+  "@id": "{ACESS_POLICY_ID}",
+  "policy": {
+    "@type": "Set"
+  }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### If you want to create Access Policy with specific BPN
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
+```
+
+Use this part in body:
+
+```json
+{
+    "@context": [
+        "https://w3id.org/catenax/2025/9/policy/odrl.jsonld",
+        "https://w3id.org/catenax/2025/9/policy/context.jsonld",
+        {
+            "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+        }
+    ],
+    "@type": "PolicyDefinition",
+    "@id": "{ACCESS_POLICY_ID}",
+    "policy": {
+        "@type": "Set",
+        "permission": [
+            {
+                "action": "access",
+                "constraint": {
+                    "leftOperand": "BusinessPartnerNumber",
+                    "operator": "isAnyOf",
+                    "rightOperand": "{CONSUMER_BPN}"
+                }
+            }
+        ]
+    }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
+#### Add Usage/contract policy in provider (Define how the data can be used)
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/policydefinitions
+```
+
+Use this part in body:
+
+```json
+{
+    "@context": [
+        "https://w3id.org/catenax/2025/9/policy/odrl.jsonld",
+        "https://w3id.org/catenax/2025/9/policy/context.jsonld",
+        {
+            "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+        }
+    ],
+    "@type": "PolicyDefinition",
+    "@id": "{USAGE_POLICY_ID}",
+    "policy": {
+        "@type": "Set",
+        "permission": [
+            {
+                "action": "use",
+                "constraint": {
+                    "and": [
+                        {
+                            "leftOperand": "UsagePurpose",
+                            "operator": "isAnyOf",
+                            "rightOperand": "cx.core.industrycore:1"
+                        },
+                        {
+                            "leftOperand": "FrameworkAgreement",
+                            "operator": "eq",
+                            "rightOperand": "DataExchangeGovernance:1.0"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
+### Creating a Contract Definition {#contractdefinition-section}
+
+Use this URL with POST:
+
+```
+{PROVIDER_CONNECTOR_URL}/management/v3/contractdefinitions
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@id": "{CONTRACT_DEFINITION_ID}",
+  "@type": "ContractDefinition",
+  "accessPolicyId": "{ACCESS_POLICY_ID}",
+  "contractPolicyId": "{USAGE_POLICY_ID}",
+  "assetsSelector": {
+    "@type": "CriterionDto",
+    "operandLeft": "https://w3id.org/edc/v0.0.1/ns/id",
+    "operator": "=",
+    "operandRight": "{ASSET_ID}"
+  }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{PROVIDER_X_API_KEY}`
+
+In response you will get correct output.
+
+## Consumer
+
+In 0.11.0 Tractus-X EDC you can follow catalog and EDRs with provider `BPN` or `did` which you can see in below section.
+
+### Use `BPN` as counterPartyId
+
+#### Catalog
+
+Send catalog request via using this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/catalog/request
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/",
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+  },
+  "@type": "CatalogRequest",
+  "counterPartyId": "{PROVIDER_BPN}",
+  "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
+  "protocol": "dataspace-protocol-http",
+  "querySpec": {
+    "offset": 0,
+    "limit": 50
+  }
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+#### EDRs
+
+##### Receiving the EDR
+
+Use this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs
+```
+
+Use this part in body:
+
+```json
+{
+    "@context": [
+        "https://w3id.org/catenax/2025/9/policy/odrl.jsonld",
+        "https://w3id.org/catenax/2025/9/policy/context.jsonld",
+        {
+            "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+        }
+    ],
+    "@type": "ContractRequest",
+    "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
+    "protocol": "dataspace-protocol-http",
+    "policy": {
+        "@id": "{OFFER_ID}",
+        "@type": "Offer",
+        "assigner": "{PROVIDER_BPN}",
+        "permission": [
+            {
+                "action": "use",
+                "constraint": {
+                    "and": [
+                        {
+                            "leftOperand": "UsagePurpose",
+                            "operator": "isAnyOf",
+                            "rightOperand": "cx.core.industrycore:1"
+                        },
+                        {
+                            "leftOperand": "FrameworkAgreement",
+                            "operator": "eq",
+                            "rightOperand": "DataExchangeGovernance:1.0"
+                        }
+                    ]
+                }
+            }
+        ],
+        "prohibition": [],
+        "obligation": [],
+        "target": "{ASSET_ID}"
+    },
+    "callbackAddresses": []
+}
+```
+
+> Note: `{OFFER_ID}` is obtained from the previous step (catalog request)
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Retrieving EDR entries from the Consumer Control Plane
+
+Use this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/request
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type": "QuerySpec",
+  "filterExpression": [
+    {
+      "operandLeft": "assetId",
+      "operator": "=",
+      "operandRight": "{ASSET_ID}"
+    }
+  ]
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Pull out the EDR
+
+Use this URL with GET:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddress
+```
+
+> Note: `{transferProcessId}` is obtained from the previous step
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Use EDR for Data Access
+
+Use GET with this URL:
+
+```
+{endpoint}
+```
+
+> Note: `{endpoint}` is obtained from the previous step
+
+Use this part in Header:
+- Key: `Authorization` Value: `{authorization}`
+  > Note: `{authorization}` is obtained from the previous step
+
+In response you will get the data which provider shared with consumer.
+
+### Use `did` as counterPartyId
+
+#### Connector discovery
+
+Send connector discovery via using this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v4alpha/connectordiscovery/dspversionparams
+```
+
+Use this part in body:
+
+```json
+{
+    "@context": {
+        "tx": "https://w3id.org/tractusx/v0.0.1/ns/",
+        "edc": "https://w3id.org/edc/v0.0.1/ns/"
+    },
+    "@type": "tx:ConnectorParamsDiscoveryRequest",
+    "tx:bpnl": "{PROVIDER_BPN}",
+    "edc:counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}"
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+>Note: In response you will get `protocol`, `counterPartyAddress`, and `counterPartyId` which you have to use in next steps.
+
+#### Catalog
+
+Send catalog request via using this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/catalog/request
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/",
+    "odrl": "http://www.w3.org/ns/odrl/2/"
+  },
+  "@type": "CatalogRequest",
+  "counterPartyId": "{PROVIDER_DID}",
+  "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
+  "protocol": "{PROTOCOL}",
+  "querySpec": {
+    "offset": 0,
+    "limit": 50
+  }
+}
+```
+>Note: Use `protocol`, `counterPartyAddress`, and `counterPartyId` from `connectordiscovery` response
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+#### EDRs
+
+##### Receiving the EDR
+
+Use this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs
+```
+
+Use this part in body:
+
+```json
+{
+    "@context": [
+        "https://w3id.org/catenax/2025/9/policy/odrl.jsonld",
+        "https://w3id.org/catenax/2025/9/policy/context.jsonld",
+        {
+            "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+        }
+    ],
+    "@type": "ContractRequest",
+    "counterPartyAddress": "{PROVIDER_CONNECTOR_DSP_URL}",
+    "protocol": "{PROTOCOL}",
+    "policy": {
+        "@id": "{OFFER_ID}",
+        "@type": "Offer",
+        "assigner": "{PROVIDER_DID}",
+        "permission": [
+            {
+                "action": "use",
+                "constraint": {
+                    "and": [
+                        {
+                            "leftOperand": "UsagePurpose",
+                            "operator": "isAnyOf",
+                            "rightOperand": "cx.core.industrycore:1"
+                        },
+                        {
+                            "leftOperand": "FrameworkAgreement",
+                            "operator": "eq",
+                            "rightOperand": "DataExchangeGovernance:1.0"
+                        }
+                    ]
+                }
+            }
+        ],
+        "prohibition": [],
+        "obligation": [],
+        "target": "{ASSET_ID}"
+    },
+    "callbackAddresses": []
+}
+```
+
+> Note: `{OFFER_ID}` is obtained from the previous step (catalog request) and use `protocol`, `counterPartyAddress`, and `counterPartyId` from `connectordiscovery` response
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Retrieving EDR entries from the Consumer Control Plane
+
+Use this URL with POST:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/request
+```
+
+Use this part in body:
+
+```json
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type": "QuerySpec",
+  "filterExpression": [
+    {
+      "operandLeft": "assetId",
+      "operator": "=",
+      "operandRight": "{ASSET_ID}"
+    }
+  ]
+}
+```
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Pull out the EDR
+
+Use this URL with GET:
+
+```
+{CONSUMER_CONNECTOR_URL}/management/v3/edrs/{transferProcessId}/dataaddress
+```
+
+> Note: `{transferProcessId}` is obtained from the previous step
+
+Use this part in Header:
+- Key: `Content-Type` Value: `application/json`
+- Key: `X-Api-Key` Value: `{CONSUMER_X_API_KEY}`
+
+In response you will get correct output.
+
+##### Use EDR for Data Access
+
+Use GET with this URL:
+
+```
+{endpoint}
+```
+
+> Note: `{endpoint}` is obtained from the previous step
+
+Use this part in Header:
+- Key: `Authorization` Value: `{authorization}`
+  > Note: `{authorization}` is obtained from the previous step
+
+In response you will get the data which provider shared with consumer.
+
+## Documentation for Management API Walkthrough
+
+- [Tractusx-edc-management-api-walkthrough](https://github.com/eclipse-tractusx/tractusx-edc/tree/main/docs/usage/management-api-walkthrough)
+
+## Management API Walkthrough with Tractus-X 0.9.0 version
+- [Management API Walkthrough](Management-API-Overview.md)
