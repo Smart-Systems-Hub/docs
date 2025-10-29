@@ -1,4 +1,4 @@
-# How to migrate to Tractus-X EDC 0.11.0
+# How to migrate to version 0.11.0
 
 This guide explains how to migrate your connector to Tractus-X EDC version 0.11.0.
 
