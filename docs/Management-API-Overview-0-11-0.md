@@ -1,4 +1,4 @@
-# Management API Overview for Tractus-X EDC version 0.11.0
+# Management API Overview for version 0.11.0
 
 With the help of this document, you will gain an overview of how a provider can share data with a consumer via Tractus-X EDC version 0.11.0.
 >**Note:** If you are still using old version of Tractus-X EDC and want to migrate to 0.11.0 version then please contact Smart-Systems-Hub. 
