@@ -74,6 +74,7 @@ By default, Smart Systems Hub uses a central vault (`install.vault: false`). To 
 To deploy:
 
 ```bash
+helm repo add smart-systems-hub https://smart-systems-hub.github.io/helm-charts 
 helm install <release-name> smart-systems-hub/tractusx-connector --version <version> -f <path-to>/values.yaml
 ```
 
@@ -140,6 +141,7 @@ To enable central vault, `install.vault` should be set to `true` if required.
 To deploy:
 
 ```bash
+helm repo add smart-systems-hub https://smart-systems-hub.github.io/helm-charts 
 helm install <release-name> smart-systems-hub/factoryx-connector --version <version> -f <path-to>/values.yaml
 ```
 
