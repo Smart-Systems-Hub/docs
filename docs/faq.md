@@ -24,6 +24,12 @@ sidebar: faqSidebar
 <details>
   <summary>Is it possible to deploy a connector in my own environment?</summary>
   <p>Yes, it's absolutely possible. Smart Systems Hub provides wallets and identities that you can use to deploy a Tractus-X EDC or a Factory-X EDC in your own environment.</p>
+  <ul>
+    <li>To deploy the connector please follow this document: [How to deploy EDC](How-to-deploy-EDC.md)</li>
+  </ul>
+  <blockquote>
+    <strong>Note:</strong> We recommend to deploy the connector please use Kubernetes and Helm instead of a Docker container.
+  </blockquote>
 </details>
 
 <details>
