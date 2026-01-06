@@ -85,6 +85,18 @@ const sidebars = {
         'Asset-Administration-Shell-Introduction',
       ],
     },
+    {
+      type: 'category',
+      label: 'Dataspace Compatibility',
+      link: {
+        type: 'generated-index',
+        description: 'Dataspace Compatibility',
+        slug: '/dataspace-compatibility',
+      },
+      items: [
+        'TX-FX-EDC-Compatibility',
+      ],
+    },
   ],
   faqSidebar: [
     {
