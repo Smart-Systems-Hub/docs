@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Management API Overview
 
 With the help of this document, you will gain an overview of how a provider can share data with a consumer via Factory-X EDC.
@@ -333,6 +335,15 @@ Use this part in Header:
 
 In response you will get the data which provider shared with consumer.
 
-# Documentation for Management API Walkthrough
+## Postman collection
+
+<a
+  href={useBaseUrl('/postman_collection/Factory-X_connector_postman_collection.json')}
+  download
+>
+  Download Postman Collection for Management API Walkthrough
+</a>
+
+## Documentation for Management API Walkthrough
 
 - [FactoryX-edc-management-api-walkthrough](https://github.com/factory-x-contributions/factoryx-edc/tree/main/docs/usage/management-api-walkthrough)

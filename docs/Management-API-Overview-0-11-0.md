@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Management API Overview for version 0.11.0
 
 With the help of this document, you will gain an overview of how a provider can share data with a consumer via Tractus-X EDC version 0.11.0.
@@ -595,6 +597,15 @@ Use this part in Header:
   > Note: `{authorization}` is obtained from the previous step
 
 In response you will get the data which provider shared with consumer.
+
+## Postman collection
+
+<a
+  href={useBaseUrl('/postman_collection/Tractus-X_0-11-0_postman_collection.json')}
+  download
+>
+  Download Postman Collection for Management API Walkthrough
+</a>
 
 ## Documentation for Management API Walkthrough
 
