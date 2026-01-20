@@ -63,6 +63,18 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'DSI Connectors',
+      link: {
+        type: 'generated-index',
+        description: 'Guides and references for DSI connectors.',
+        slug: '/dsi-connectors',
+      },
+      items: [
+        'Management-API-Overview-DSI-and-Tractus-X-connectors',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Central Vault',
       link: {
         type: 'generated-index',

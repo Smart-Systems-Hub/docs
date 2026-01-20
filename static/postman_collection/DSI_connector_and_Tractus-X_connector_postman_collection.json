@@ -1,0 +1,758 @@
+{
+  "info": {
+    "_postman_id": "f13f412a-b623-48b1-a447-93967cfa9bb1",
+    "name": "DSI connector and Tractus-X connector",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38787490"
+  },
+  "item": [
+    {
+      "name": "Provider Tractus-X connector",
+      "item": [
+        {
+          "name": "Create asset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {},\r\n  \"@type\": \"Asset\",\r\n  \"@id\": \"{{asset-id}}\",\r\n  \"properties\": {\r\n    \"description\": \"{DESCRIPTION_FOR_ASSET}\"\r\n  },\r\n  \"dataAddress\": {\r\n    \"@type\": \"DataAddress\",\r\n    \"type\": \"{SUPPORTED_TYPE}\",\r\n    \"baseUrl\": \"{API_PUBLIC_URL}\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-provider-connector-dsp-url}}/management/v3/assets",
+              "host": [
+                "{{tractus-x-provider-connector-dsp-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "assets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create access policy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": [\r\n        \"https://w3id.org/tractusx/policy/v1.0.0\",\r\n        \"http://www.w3.org/ns/odrl.jsonld\",\r\n        {\r\n            \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n        }\r\n    ],\r\n    \"@type\": \"PolicyDefinition\",\r\n    \"@id\": \"{{access-policy}}\",\r\n    \"policy\": {\r\n        \"@type\": \"Set\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-provider-connector-dsp-url}}/management/v3/policydefinitions",
+              "host": [
+                "{{tractus-x-provider-connector-dsp-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create usage policy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": [\r\n        \"https://w3id.org/tractusx/edc/v0.0.1\",\r\n        \"http://www.w3.org/ns/odrl.jsonld\",\r\n        {\r\n            \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n        }\r\n    ],\r\n    \"@type\": \"PolicyDefinition\",\r\n    \"@id\": \"{{usage-policy}}\",\r\n    \"policy\": {\r\n        \"@type\": \"Set\",\r\n        \"permission\": [\r\n            {\r\n                \"action\": \"use\",\r\n                \"constraint\": {\r\n                    \"leftOperand\": \"BusinessPartnerNumber\",\r\n                    \"operator\": \"eq\",\r\n                    \"rightOperand\": \"{{dsi-connector-bpn}}\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-provider-connector-dsp-url}}/management/v3/policydefinitions",
+              "host": [
+                "{{tractus-x-provider-connector-dsp-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create contract definition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {},\r\n  \"@id\": \"{{contract-definition}}\",\r\n  \"@type\": \"ContractDefinition\",\r\n  \"accessPolicyId\": \"{{access-policy}}\",\r\n  \"contractPolicyId\": \"{{usage-policy}}\",\r\n  \"assetsSelector\": {\r\n    \"@type\": \"CriterionDto\",\r\n    \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\r\n    \"operator\": \"=\",\r\n    \"operandRight\": \"{{asset-id}}\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-provider-connector-dsp-url}}/management/v3/contractdefinitions",
+              "host": [
+                "{{tractus-x-provider-connector-dsp-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "contractdefinitions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consumer DSI connector",
+      "item": [
+        {
+          "name": "Catalog",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "clientSecret",
+                  "value": "{{client-secret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "{{access-token-url}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{client-id}}",
+                  "type": "string"
+                },
+                {
+                  "key": "tokenName",
+                  "value": "did token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "string"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"protocol\": \"dataspace-protocol-http\",\r\n    \"counterPartyAddress\": \"{{tractus-x-provider-connector-dsp-url}}/api/v1/dsp\",\r\n  \"counterPartyId\": \"{{tractus-x-connector-bpn}}\",\r\n    \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{dsi-connector-url}}/api/management/v3/catalog/request",
+              "host": [
+                "{{dsi-connector-url}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "clientSecret",
+                  "value": "b76c7ffe-0e73-47a7-bcf9-5ce1fb10064d$sUjnsnRO_vZmJE5VMJfaNMHT5w-i9vpQyJiAKBTPU9w=",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "sb-b9fefe19-789a-4efc-bb9b-f35e63fe1b9a!b94997|dsi!b72877",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://manu-x-integration-suite-vqs67u6c.authentication.eu20.hana.ondemand.com/oauth/token",
+                  "type": "string"
+                },
+                {
+                  "key": "tokenName",
+                  "value": "did token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "string"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\r\n      \"edc\": \"https://w3id.org/edc/v0.0.1/ns/\",\r\n      \"odrl\": \"http://www.w3.org/ns/odrl/2/\",\r\n      \"cx-policy\": \"https://w3id.org/catenax/policy/\"\r\n    },   \r\n    \"@type\": \"edc:ContractRequest\",\r\n    \"edc:counterPartyAddress\": \"https://ssh-internal-test-entity-3-dsp.c-27d7c36.kyma.ondemand.com/api/v1/dsp\",\r\n    \"edc:counterPartyId\": \"BPNL000000003SE3\",\r\n    \"edc:protocol\": \"dataspace-protocol-http\",\r\n    \"edc:policy\": {       \r\n        \"@type\": \"odrl:Offer\",\r\n        \"@id\": \"Y2hlY2stZHNpLTA5MC1jb250cmFjdC1kZWZpbml0aW9u:Y2hlY2stZHNpLTA5MA==:YmFmNTlhYjEtMGZkOC00Zjc3LTlhMTctZjZjMTQzMGFkMGJh\",\r\n        \"odrl:assigner\": \"BPNL000000003SE3\",\r\n        \"odrl:target\": \"check-dsi-090\",\r\n        \"odrl:permission\": {\r\n                \"odrl:action\": {\r\n                    \"@id\": \"odrl:use\"\r\n                },\r\n                \"odrl:constraint\": {\r\n                    \"odrl:leftOperand\": {\r\n                        \"@id\": \"tx:BusinessPartnerNumber\"\r\n                    },\r\n                    \"odrl:operator\": {\r\n                        \"@id\": \"odrl:eq\"\r\n                    },\r\n                    \"odrl:rightOperand\": \"BPNL000000003SE6\"\r\n                }\r\n            },\r\n        \"odrl:prohibition\": [],\r\n        \"odrl:obligation\": []\r\n    }\r\n}\t",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://manu-x-integration-suite-vqs67u6c.dsi002.dsi.integration.cloud.sap/api/management/v2/edrs",
+              "protocol": "https",
+              "host": [
+                "manu-x-integration-suite-vqs67u6c",
+                "dsi002",
+                "dsi",
+                "integration",
+                "cloud",
+                "sap"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v2",
+                "edrs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs/request",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "clientSecret",
+                  "value": "b76c7ffe-0e73-47a7-bcf9-5ce1fb10064d$sUjnsnRO_vZmJE5VMJfaNMHT5w-i9vpQyJiAKBTPU9w=",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "sb-b9fefe19-789a-4efc-bb9b-f35e63fe1b9a!b94997|dsi!b72877",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://manu-x-integration-suite-vqs67u6c.authentication.eu20.hana.ondemand.com/oauth/token",
+                  "type": "string"
+                },
+                {
+                  "key": "tokenName",
+                  "value": "did token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "string"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"edc:QuerySpec\",\r\n    \"edc:filterExpression\": {\r\n        \"@type\": \"edc:Criterion\",\r\n        \"edc:operandLeft\": \"assetId\",\r\n        \"edc:operator\": \"=\",\r\n        \"edc:operandRight\": \"check-dsi\"\r\n    },\r\n    \"edc:sortOrder\": \"ASC\",\r\n    \"edc:offset\": 0,\r\n    \"edc:limit\": 100\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://manu-x-integration-suite-vqs67u6c.dsi002.dsi.integration.cloud.sap/api/management/v2/edrs/request",
+              "protocol": "https",
+              "host": [
+                "manu-x-integration-suite-vqs67u6c",
+                "dsi002",
+                "dsi",
+                "integration",
+                "cloud",
+                "sap"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v2",
+                "edrs",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "transfer process",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "clientSecret",
+                  "value": "{{client-secret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{client-id}}",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "{{access-token-url}}",
+                  "type": "string"
+                },
+                {
+                  "key": "tokenName",
+                  "value": "did token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "string"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{dsi-connector-url}}/api/management/v2/edrs/{transferProcessId}/dataaddress",
+              "host": [
+                "{{dsi-connector-url}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v2",
+                "edrs",
+                "{transferProcessId}",
+                "dataaddress"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Data transfer",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{endpoint}}",
+              "host": [
+                "{{endpoint}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Contract negotians",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "clientSecret",
+                  "value": "{{client-secret}}",
+                  "type": "string"
+                },
+                {
+                  "key": "clientId",
+                  "value": "{{client-id}}",
+                  "type": "string"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "{{access-token-url}}",
+                  "type": "string"
+                },
+                {
+                  "key": "tokenName",
+                  "value": "did token",
+                  "type": "string"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "string"
+                },
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{dsi-connector-url}}/api/management/v3/contractnegotiations/{contractNegotianId}/state",
+              "host": [
+                "{{dsi-connector-url}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "contractnegotiations",
+                "{contractNegotianId}",
+                "state"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consumer Tractus-X",
+      "item": [
+        {
+          "name": "Catalog",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-bpn}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"protocol\": \"dataspace-protocol-http\",\r\n    \"counterPartyAddress\": \"{{dsi-connector-dsp-url}}/api/v1/dsp\",\r\n  \"counterPartyId\": \"{{dsi-connector-bpn}}\",\r\n    \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-consumer-connector-url}}/management/v3/catalog/request",
+              "host": [
+                "{{tractus-x-consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "password",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\r\n    \"odrl\": \"http://www.w3.org/ns/odrl/2/\",\r\n    \"tx\": \"https://w3id.org/tractusx/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"ContractRequest\",\r\n  \"counterPartyAddress\": \"https://manu-x-integration-suite-vqs67u6c.dsi002.dsi.integration.cloud.sap/api/v1/dsp\",\r\n  \"protocol\": \"dataspace-protocol-http\",\r\n  \"policy\": {\r\n    \"@id\": \"NTMxZTUwN2EtNTg3Yi00MmM2LWEwODEtYjJiYTNmOGI0OTZl:YjBiNmFhOWUtYzdiZi00MGI1LTk0YTMtYmJmMTY3ODZkNWZk:ZWQwYTMzNmYtMTllNy00OGRiLTg1OTctNzAxM2I3MDliNmEx\",\r\n    \"@type\": \"odrl:Offer\",\r\n\r\n    \"odrl:assigner\": \"BPNL000000003SE6\",\r\n    \"odrl:target\": \"b0b6aa9e-c7bf-40b5-94a3-bbf16786d5fd\",\r\n\r\n    \"odrl:permission\": {\r\n      \"odrl:action\": { \"@id\": \"USE\" },\r\n      \"odrl:constraint\": {\r\n        \"odrl:leftOperand\": { \"@id\": \"tx:BusinessPartnerNumber\" },\r\n        \"odrl:operator\": { \"@id\": \"odrl:eq\" },\r\n        \"odrl:rightOperand\": \"BPNL000000003SE3\"\r\n      }\r\n    },\r\n    \"odrl:prohibition\": [],\r\n    \"odrl:obligation\": []\r\n  }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ssh-internal-test-entity-3.c-27d7c36.kyma.ondemand.com/management/v3/edrs",
+              "protocol": "https",
+              "host": [
+                "ssh-internal-test-entity-3",
+                "c-27d7c36",
+                "kyma",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs/request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"QuerySpec\",\r\n    \"filterExpression\": [\r\n        {\r\n            \"operandLeft\": \"assetId\",\r\n            \"operator\": \"=\",\r\n            \"operandRight\": \"{{asset-id}}\"\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{tractus-x-consumer-connector-url}}/management/v3/edrs/request",
+              "host": [
+                "{{tractus-x-consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Transfer Process",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{tractus-x-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{tractus-x-consumer-connector-url}}/management/v3/edrs/{transferProcessId}/dataaddress",
+              "host": [
+                "{{tractus-x-consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs",
+                "{transferProcessId}",
+                "dataaddress"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Data transfer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJqaWQiOiJPVTM0MkdCSzZZRnkrS2VOWE0xZzJRSnRDeDBHZFNTNUlDeEp3SEIrdjlRPSIsImFsZyI6IlJTMjU2Iiwiamt1IjoiaHR0cHM6Ly9tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMuYXV0aGVudGljYXRpb24uZXUyMC5oYW5hLm9uZGVtYW5kLmNvbS90b2tlbl9rZXlzIiwia2lkIjoiZGVmYXVsdC1qd3Qta2V5LTVmYTgyZTNiZDcifQ.eyJzdWIiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwiYXpfYXR0ciI6eyJzdWIiOiJCUE5MMDAwMDAwMDAzU0U2IiwicHJveHlVcmwiOiJodHRwczovL21hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2Yy5pdC1jcGkwMzUtcnQuY2ZhcHBzLmV1MjAtMDAxLmhhbmEub25kZW1hbmQuY29tL2h0dHAvZGF0YXNwYWNlaW50ZWdyYXRpb24vaHR0cGRhdGFwbGFuZSIsImRhZCI6IntcInByb3BlcnRpZXNcIjp7XCJhdXRoS2V5XCI6XCJBdXRob3JpemF0aW9uXCIsXCJzZWNyZXROYW1lXCI6XCJTQVBfRGF0YXNwYWNlSW50ZWdyYXRpb25DcmVkZW50aWFsXzFcIixcIm1ldGhvZFwiOlwiR0VUXCIsXCJxdWVyeVBhcmFtc1wiOlwiXCIsXCJwcm94eVF1ZXJ5UGFyYW1zXCI6XCJmYWxzZVwiLFwiaGVhZGVyOkVkYy1CcG5cIjpcIkJQTkwwMDAwMDAwMDNTRTNcIixcInR5cGVcIjpcIkh0dHBEYXRhXCIsXCJwcm94eVBhdGhcIjpcImZhbHNlXCIsXCJwYXRoXCI6XCJcIixcImJhc2VVcmxcIjpcImh0dHBzOi8vanNvbnBsYWNlaG9sZGVyLnR5cGljb2RlLmNvbS90b2Rvcy8zXCIsXCJoZWFkZXI6YXV0aFR5cGVcIjpcImJhc2ljXCIsXCJoZWFkZXI6RWRjLUNvbnRyYWN0LUFncmVlbWVudC1JZFwiOlwiODY4ODFmNjktODkyNS00YzkwLTk1YmUtZTE3Y2JlYzI2ZmJlXCIsXCJwcm94eU1ldGhvZFwiOlwiZmFsc2VcIixcInVzZXJcIjpcInVzZXJcIixcImNvbnRlbnRUeXBlXCI6XCJcIn19IiwicGFydGljaXBhbnRfaWQiOiJCUE5MMDAwMDAwMDAzU0UzIiwiaXNzIjoiQlBOTDAwMDAwMDAwM1NFNiIsImFzc2V0X2lkIjoiYjBiNmFhOWUtYzdiZi00MGI1LTk0YTMtYmJmMTY3ODZkNWZkIiwiYXVkIjoiZGlkOndlYjpkaW0tc3RhdGljLXByb2QuZGlzLWNsb3VkLXByb2QuY2ZhcHBzLmV1MTAtMDA0LmhhbmEub25kZW1hbmQuY29tOmRpbS1ob3N0ZWQ6ZDA3OGI1MWQtNDJmZS00MzNkLWE4OWItMWQ2Y2Q0OTBjY2Q1OnNzaC1pbnRlcm5hbC10ZXN0LWVudGl0eS0zLWlkZW50aXR5IiwiaHR0cHM6Ly93M2lkLm9yZy90cmFjdHVzeC9hdXRoL2F1ZGllbmNlIjoiZGlkOndlYjpkaW0tc3RhdGljLXByb2QuZGlzLWNsb3VkLXByb2QuY2ZhcHBzLmV1MTAtMDA0LmhhbmEub25kZW1hbmQuY29tOmRpbS1ob3N0ZWQ6ZDA3OGI1MWQtNDJmZS00MzNkLWE4OWItMWQ2Y2Q0OTBjY2Q1OnNzaC1pbnRlcm5hbC10ZXN0LWVudGl0eS0zLWlkZW50aXR5IiwiYWdyZWVtZW50X2lkIjoiODY4ODFmNjktODkyNS00YzkwLTk1YmUtZTE3Y2JlYzI2ZmJlIiwiZmxvd190eXBlIjoiUFVMTCIsInB1YmxpY0FwaVVybCI6Imh0dHBzOi8vbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjLml0LWNwaTAzNS1ydC5jZmFwcHMuZXUyMC0wMDEuaGFuYS5vbmRlbWFuZC5jb20vaHR0cC9kYXRhc3BhY2VpbnRlZ3JhdGlvbi9odHRwZGF0YXBsYW5lIiwiZXhwIjoiMTc2ODgyMDc1MyIsInJlcXVlc3RfaWQiOiI4MmViODY5OC1lZGVjLTQ5OWYtOWFiOS01ZDExZjEyZDM3MWEiLCJpYXQiOiIxNzY4ODE2NTUzIiwidHJhbnNmZXJQcm9jZXNzSWQiOiIzOTI1Zjg3OS02YjE5LTQ1YmMtOTJjOC01MDAyNzhlZmNhMGMifSwiaXNzIjoiaHR0cHM6Ly9tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMuYXV0aGVudGljYXRpb24uZXUyMC5oYW5hLm9uZGVtYW5kLmNvbS9vYXV0aC90b2tlbiIsImF1dGhvcml0aWVzIjpbInVhYS5yZXNvdXJjZSIsIml0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwLkRhdGFzcGFjZUludGVncmF0aW9uX1J1bnRpbWUiXSwiY2xpZW50X2lkIjoic2ItYzQzZDE0ODMtMmYxYS00ZmNlLWFlMTctMmQ3YzhmZDM4ZTcxIWI5NDk5N3xpdC1ydC1tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMhYjExMjExMCIsImF1ZCI6WyJ1YWEiLCJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwiaXQtcnQtbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjIWIxMTIxMTAiXSwiZXh0X2F0dHIiOnsiZW5oYW5jZXIiOiJYU1VBQSIsInN1YmFjY291bnRpZCI6ImMzOWRmNmY5LWI3ZjItNDYwNC05ZjA0LWQ3YTZmZDMzMWU5MCIsInpkbiI6Im1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyIsInNlcnZpY2VpbnN0YW5jZWlkIjoiYzQzZDE0ODMtMmYxYS00ZmNlLWFlMTctMmQ3YzhmZDM4ZTcxIn0sInppZCI6ImMzOWRmNmY5LWI3ZjItNDYwNC05ZjA0LWQ3YTZmZDMzMWU5MCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhenAiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwic2NvcGUiOlsidWFhLnJlc291cmNlIiwiaXQtcnQtbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjIWIxMTIxMTAuRGF0YXNwYWNlSW50ZWdyYXRpb25fUnVudGltZSJdLCJleHAiOjE3Njg4MjAxNTMsImlhdCI6MTc2ODgxNjU1MywianRpIjoiNjE4MGJhYWQzZWZkNDg0NThmZmY0MWQ2OWNiOWUxODEiLCJyZXZfc2lnIjoiYmFiNmQ3ZWYiLCJjaWQiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIn0.nvQAjnuFUIPOs5ywg89c7LXphn9qy1ehS857832u-y84QUtoC35JBswqsNjLs2Sa-ZhY0cnzDsezXzMST8VSL-EAixDAHutfxVq9f7_Qqubt9B33W1Z9Cn5MucUG6Ys6pDK0SLbp_VhhUmNlz-Y2YxAvA-lC2LxRBoCuBZJ-vFcEoBT6_VCuGwp6eXC6YTxLfpiQqS6KM3cYq030FCp8n-EXArxJbQiR3oeRROjEvNPj9FGcjC_ycwipXEVvVrGNpH-p_NaLDnF-qxHm53MtZTV026L2Xtcayov2B38BsukDY5kHJl_mauCMMaLMYvxJWUPcm1E3HXIjW9IDnCZszg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJ0eXAiOiJKV1QiLCJqaWQiOiJPVTM0MkdCSzZZRnkrS2VOWE0xZzJRSnRDeDBHZFNTNUlDeEp3SEIrdjlRPSIsImFsZyI6IlJTMjU2Iiwiamt1IjoiaHR0cHM6Ly9tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMuYXV0aGVudGljYXRpb24uZXUyMC5oYW5hLm9uZGVtYW5kLmNvbS90b2tlbl9rZXlzIiwia2lkIjoiZGVmYXVsdC1qd3Qta2V5LTVmYTgyZTNiZDcifQ.eyJzdWIiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwiYXpfYXR0ciI6eyJzdWIiOiJCUE5MMDAwMDAwMDAzU0U2IiwicHJveHlVcmwiOiJodHRwczovL21hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2Yy5pdC1jcGkwMzUtcnQuY2ZhcHBzLmV1MjAtMDAxLmhhbmEub25kZW1hbmQuY29tL2h0dHAvZGF0YXNwYWNlaW50ZWdyYXRpb24vaHR0cGRhdGFwbGFuZSIsImRhZCI6IntcInByb3BlcnRpZXNcIjp7XCJhdXRoS2V5XCI6XCJBdXRob3JpemF0aW9uXCIsXCJzZWNyZXROYW1lXCI6XCJTQVBfRGF0YXNwYWNlSW50ZWdyYXRpb25DcmVkZW50aWFsXzFcIixcIm1ldGhvZFwiOlwiR0VUXCIsXCJxdWVyeVBhcmFtc1wiOlwiXCIsXCJwcm94eVF1ZXJ5UGFyYW1zXCI6XCJmYWxzZVwiLFwiaGVhZGVyOkVkYy1CcG5cIjpcIkJQTkwwMDAwMDAwMDNTRTNcIixcInR5cGVcIjpcIkh0dHBEYXRhXCIsXCJwcm94eVBhdGhcIjpcImZhbHNlXCIsXCJwYXRoXCI6XCJcIixcImJhc2VVcmxcIjpcImh0dHBzOi8vanNvbnBsYWNlaG9sZGVyLnR5cGljb2RlLmNvbS90b2Rvcy8zXCIsXCJoZWFkZXI6YXV0aFR5cGVcIjpcImJhc2ljXCIsXCJoZWFkZXI6RWRjLUNvbnRyYWN0LUFncmVlbWVudC1JZFwiOlwiODY4ODFmNjktODkyNS00YzkwLTk1YmUtZTE3Y2JlYzI2ZmJlXCIsXCJwcm94eU1ldGhvZFwiOlwiZmFsc2VcIixcInVzZXJcIjpcInVzZXJcIixcImNvbnRlbnRUeXBlXCI6XCJcIn19IiwicGFydGljaXBhbnRfaWQiOiJCUE5MMDAwMDAwMDAzU0UzIiwiaXNzIjoiQlBOTDAwMDAwMDAwM1NFNiIsImFzc2V0X2lkIjoiYjBiNmFhOWUtYzdiZi00MGI1LTk0YTMtYmJmMTY3ODZkNWZkIiwiYXVkIjoiZGlkOndlYjpkaW0tc3RhdGljLXByb2QuZGlzLWNsb3VkLXByb2QuY2ZhcHBzLmV1MTAtMDA0LmhhbmEub25kZW1hbmQuY29tOmRpbS1ob3N0ZWQ6ZDA3OGI1MWQtNDJmZS00MzNkLWE4OWItMWQ2Y2Q0OTBjY2Q1OnNzaC1pbnRlcm5hbC10ZXN0LWVudGl0eS0zLWlkZW50aXR5IiwiaHR0cHM6Ly93M2lkLm9yZy90cmFjdHVzeC9hdXRoL2F1ZGllbmNlIjoiZGlkOndlYjpkaW0tc3RhdGljLXByb2QuZGlzLWNsb3VkLXByb2QuY2ZhcHBzLmV1MTAtMDA0LmhhbmEub25kZW1hbmQuY29tOmRpbS1ob3N0ZWQ6ZDA3OGI1MWQtNDJmZS00MzNkLWE4OWItMWQ2Y2Q0OTBjY2Q1OnNzaC1pbnRlcm5hbC10ZXN0LWVudGl0eS0zLWlkZW50aXR5IiwiYWdyZWVtZW50X2lkIjoiODY4ODFmNjktODkyNS00YzkwLTk1YmUtZTE3Y2JlYzI2ZmJlIiwiZmxvd190eXBlIjoiUFVMTCIsInB1YmxpY0FwaVVybCI6Imh0dHBzOi8vbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjLml0LWNwaTAzNS1ydC5jZmFwcHMuZXUyMC0wMDEuaGFuYS5vbmRlbWFuZC5jb20vaHR0cC9kYXRhc3BhY2VpbnRlZ3JhdGlvbi9odHRwZGF0YXBsYW5lIiwiZXhwIjoiMTc2ODgyMDc1MyIsInJlcXVlc3RfaWQiOiI4MmViODY5OC1lZGVjLTQ5OWYtOWFiOS01ZDExZjEyZDM3MWEiLCJpYXQiOiIxNzY4ODE2NTUzIiwidHJhbnNmZXJQcm9jZXNzSWQiOiIzOTI1Zjg3OS02YjE5LTQ1YmMtOTJjOC01MDAyNzhlZmNhMGMifSwiaXNzIjoiaHR0cHM6Ly9tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMuYXV0aGVudGljYXRpb24uZXUyMC5oYW5hLm9uZGVtYW5kLmNvbS9vYXV0aC90b2tlbiIsImF1dGhvcml0aWVzIjpbInVhYS5yZXNvdXJjZSIsIml0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwLkRhdGFzcGFjZUludGVncmF0aW9uX1J1bnRpbWUiXSwiY2xpZW50X2lkIjoic2ItYzQzZDE0ODMtMmYxYS00ZmNlLWFlMTctMmQ3YzhmZDM4ZTcxIWI5NDk5N3xpdC1ydC1tYW51LXgtaW50ZWdyYXRpb24tc3VpdGUtdnFzNjd1NmMhYjExMjExMCIsImF1ZCI6WyJ1YWEiLCJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwiaXQtcnQtbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjIWIxMTIxMTAiXSwiZXh0X2F0dHIiOnsiZW5oYW5jZXIiOiJYU1VBQSIsInN1YmFjY291bnRpZCI6ImMzOWRmNmY5LWI3ZjItNDYwNC05ZjA0LWQ3YTZmZDMzMWU5MCIsInpkbiI6Im1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyIsInNlcnZpY2VpbnN0YW5jZWlkIjoiYzQzZDE0ODMtMmYxYS00ZmNlLWFlMTctMmQ3YzhmZDM4ZTcxIn0sInppZCI6ImMzOWRmNmY5LWI3ZjItNDYwNC05ZjA0LWQ3YTZmZDMzMWU5MCIsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhenAiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIiwic2NvcGUiOlsidWFhLnJlc291cmNlIiwiaXQtcnQtbWFudS14LWludGVncmF0aW9uLXN1aXRlLXZxczY3dTZjIWIxMTIxMTAuRGF0YXNwYWNlSW50ZWdyYXRpb25fUnVudGltZSJdLCJleHAiOjE3Njg4MjAxNTMsImlhdCI6MTc2ODgxNjU1MywianRpIjoiNjE4MGJhYWQzZWZkNDg0NThmZmY0MWQ2OWNiOWUxODEiLCJyZXZfc2lnIjoiYmFiNmQ3ZWYiLCJjaWQiOiJzYi1jNDNkMTQ4My0yZjFhLTRmY2UtYWUxNy0yZDdjOGZkMzhlNzEhYjk0OTk3fGl0LXJ0LW1hbnUteC1pbnRlZ3JhdGlvbi1zdWl0ZS12cXM2N3U2YyFiMTEyMTEwIn0.nvQAjnuFUIPOs5ywg89c7LXphn9qy1ehS857832u-y84QUtoC35JBswqsNjLs2Sa-ZhY0cnzDsezXzMST8VSL-EAixDAHutfxVq9f7_Qqubt9B33W1Z9Cn5MucUG6Ys6pDK0SLbp_VhhUmNlz-Y2YxAvA-lC2LxRBoCuBZJ-vFcEoBT6_VCuGwp6eXC6YTxLfpiQqS6KM3cYq030FCp8n-EXArxJbQiR3oeRROjEvNPj9FGcjC_ycwipXEVvVrGNpH-p_NaLDnF-qxHm53MtZTV026L2Xtcayov2B38BsukDY5kHJl_mauCMMaLMYvxJWUPcm1E3HXIjW9IDnCZszg",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{endpoint}}",
+              "host": [
+                "{{endpoint}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "tractus-x-provider-connector-url",
+      "value": ""
+    },
+    {
+      "key": "dsi-connector-url",
+      "value": ""
+    },
+    {
+      "key": "tractus-x-consumer-connector-url",
+      "value": ""
+    },
+    {
+      "key": "tractus-x-provider-connector-dsp-url",
+      "value": ""
+    },
+    {
+      "key": "dsi-connector-dsp-url",
+      "value": ""
+    },
+    {
+      "key": "tractus-x-connector-x-api-key",
+      "value": ""
+    },
+    {
+      "key": "tractus-x-connector-bpn",
+      "value": ""
+    },
+    {
+      "key": "dsi-connector-bpn",
+      "value": ""
+    },
+    {
+      "key": "asset-id",
+      "value": ""
+    },
+    {
+      "key": "access-policy",
+      "value": ""
+    },
+    {
+      "key": "usage-policy",
+      "value": ""
+    },
+    {
+      "key": "contract-definition",
+      "value": ""
+    },
+    {
+      "key": "endpoint",
+      "value": ""
+    },
+    {
+      "key": "client-id",
+      "value": ""
+    },
+    {
+      "key": "client-secret",
+      "value": ""
+    },
+    {
+      "key": "access-token-url",
+      "value": ""
+    }
+  ]
+}
