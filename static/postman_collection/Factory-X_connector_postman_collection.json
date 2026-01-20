@@ -1,0 +1,396 @@
+{
+  "info": {
+    "_postman_id": "f1461747-dba3-4342-ab52-6643ba448ddc",
+    "name": "Factory-x connector",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38787490"
+  },
+  "item": [
+    {
+      "name": "provider",
+      "item": [
+        {
+          "name": "Create assets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{provider-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {},\r\n    \"@type\": \"Asset\",\r\n    \"@id\": \"{{asset-id}}\",\r\n    \"properties\": {\r\n        \"description\": \"{DESCRIPTION_FOR_ASSET}\"\r\n    },\r\n    \"dataAddress\": {\r\n        \"@type\": \"DataAddress\",\r\n        \"type\": \"{SUPPORTED_TYPE}\",\r\n        \"baseUrl\": \"{API_PUBLIC_URL}\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{provider-connector-url}}/management/v3/assets/request",
+              "host": [
+                "{{provider-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "assets",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create access policy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{provider-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": [\r\n    \"https://w3id.org/tractusx/edc/v0.0.1\",\r\n    \"http://www.w3.org/ns/odrl.jsonld\",\r\n    {\r\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    }\r\n  ],\r\n  \"@type\": \"PolicyDefinition\",\r\n  \"@id\": \"{{access-policy}}\",\r\n  \"policy\": {\r\n    \"@type\": \"Set\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{provider-connector-url}}/management/v3/policydefinitions",
+              "host": [
+                "{{provider-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create usage policy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "password",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": [\r\n    \"https://w3id.org/factoryx/policy/v1.0.0\",\r\n    \"http://www.w3.org/ns/odrl.jsonld\",\r\n    {\r\n      \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    }\r\n  ],\r\n  \"@type\": \"PolicyDefinition\",\r\n  \"@id\": \"initial-check-access-policy\",\r\n  \"policy\": {\r\n    \"@type\": \"Set\",\r\n    \"permission\": [\r\n      {\r\n        \"action\": \"use\",\r\n        \"constraint\": {\r\n          \"leftOperand\": \"BusinessPartnerDID\",\r\n          \"operator\": \"eq\",\r\n          \"rightOperand\": \"did:web:dim-static-prod.dis-cloud-prod.cfapps.eu10-004.hana.ondemand.com:dim-hosted:376f8182-8590-46d8-9929-219417e71420:ssh-internal-test-entity-6-identity\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://fx-provider-connector.c-27d7c36.kyma.ondemand.com/management/v3/policydefinitions",
+              "protocol": "https",
+              "host": [
+                "fx-provider-connector",
+                "c-27d7c36",
+                "kyma",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create contract definition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{provider-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"@type\": \"ContractDefinition\",\r\n  \"@id\": \"{{contract-definition}}\",\r\n  \"accessPolicyId\": \"{{access-policy}}\",\r\n  \"contractPolicyId\": \"{{usage-policy}}\",\r\n  \"assetsSelector\": \r\n    {\r\n      \"@type\": \"CriterionDto\",\r\n      \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\r\n      \"operator\": \"=\",\r\n      \"operandRight\": \"{{asset-id}}\"\r\n    }\r\n  \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{provider-connector-url}}/management/v3/contractdefinitions",
+              "host": [
+                "{{provider-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "contractdefinitions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "consumer",
+      "item": [
+        {
+          "name": "Catalog",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{consumer-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\r\n    \"odrl\": \"http://www.w3.org/ns/odrl/2/\"\r\n  },\r\n  \"@type\": \"CatalogRequest\",\r\n  \"counterPartyId\": \"{{provider-connector-did}}\",\r\n  \"counterPartyAddress\": \"{{provider-connector-dsp-url}}/api/v1/dsp\",\r\n  \"protocol\": \"{SUPPORTED_TYPE}\",\r\n  \"querySpec\": {\r\n    \"offset\": 0,\r\n    \"limit\": 50\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{consumer-connector-url}}/management/v3/catalog/request",
+              "host": [
+                "{{consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{consumer-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": [\r\n        \"https://w3id.org/tractusx/policy/v1.0.0\",\r\n        \"http://www.w3.org/ns/odrl.jsonld\",\r\n        {\r\n            \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\",\r\n            \"fx-policy\": \"https://w3id.org/factoryx/policy/\"\r\n        }\r\n    ],\r\n    \"@type\": \"ContractRequest\",\r\n    \"counterPartyAddress\": \"{{provider-connector-dsp-url}}/api/v1/dsp\",\r\n    \"protocol\": \"{SUPPORTED_TYPE}\",\r\n    \"policy\": {\r\n        \"@id\": \"{OFFER_ID}\",\r\n        \"@type\": \"Offer\",\r\n        \"assigner\": \"{{provider-connector-did}}\",\r\n        \"permission\": [\r\n            {\r\n                \"action\": \"use\",\r\n                \"constraint\": {\r\n                        \"leftOperand\": \"fx-policy:BusinessPartnerDID\",\r\n                        \"operator\": \"eq\",\r\n                        \"rightOperand\": \"{{consumer-connector-did}}\"\r\n                }\r\n            }\r\n        ],\r\n        \"prohibition\": [],\r\n        \"obligation\": [],\r\n        \"target\": \"{{asset-id}}\"\r\n    },\r\n    \"callbackAddresses\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{consumer-connector-url}}/management/v3/edrs",
+              "host": [
+                "{{consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edrs request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{consumer-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"QuerySpec\",\r\n    \"filterExpression\": [\r\n        {\r\n            \"operandLeft\": \"assetId\",\r\n            \"operator\": \"=\",\r\n            \"operandRight\": \"{{asset-id}}\"\r\n        }\r\n        \r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{consumer-connector-url}}/management/v3/edrs/request",
+              "host": [
+                "{{consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Transfer process",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "x-api-key",
+                "value": "{{consumer-connector-x-api-key}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{consumer-connector-url}}/management/v3/edrs/{transferProcessId}/dataaddress",
+              "host": [
+                "{{consumer-connector-url}}"
+              ],
+              "path": [
+                "management",
+                "v3",
+                "edrs",
+                "{transferProcessId}",
+                "dataaddress"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Data transfer",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJraWQiOiJwdWJsaWMta2V5LWFsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJkaWQ6d2ViOmRpbS1zdGF0aWMtcHJvZC5kaXMtY2xvdWQtcHJvZC5jZmFwcHMuZXUxMC0wMDQuaGFuYS5vbmRlbWFuZC5jb206ZGltLWhvc3RlZDpjNzAyYzRkZS1hMTA5LTQ1ZjktYThhMy1iZTQxNGI2NDY3NjQ6c3NoLWludGVybmFsLXRlc3QtZW50aXR5LTctaWRlbnRpdHkiLCJhdWQiOiJkaWQ6d2ViOmRpbS1zdGF0aWMtcHJvZC5kaXMtY2xvdWQtcHJvZC5jZmFwcHMuZXUxMC0wMDQuaGFuYS5vbmRlbWFuZC5jb206ZGltLWhvc3RlZDozNzZmODE4Mi04NTkwLTQ2ZDgtOTkyOS0yMTk0MTdlNzE0MjA6c3NoLWludGVybmFsLXRlc3QtZW50aXR5LTYtaWRlbnRpdHkiLCJzdWIiOiJkaWQ6d2ViOmRpbS1zdGF0aWMtcHJvZC5kaXMtY2xvdWQtcHJvZC5jZmFwcHMuZXUxMC0wMDQuaGFuYS5vbmRlbWFuZC5jb206ZGltLWhvc3RlZDpjNzAyYzRkZS1hMTA5LTQ1ZjktYThhMy1iZTQxNGI2NDY3NjQ6c3NoLWludGVybmFsLXRlc3QtZW50aXR5LTctaWRlbnRpdHkiLCJleHAiOjE3NDkwMjI5NjksImlhdCI6MTc0OTAyMjY2OSwianRpIjoiYzA0ZTBmMTAtZTI1Ni00ZjllLWE0MjktYjdkZTIxNTEwYjg1In0.27goVwbpM7pnnxlPvIn9XdHKAngnFJa7JwxjPpcbScwXd3Ycigjl6AkRQGTqArF99y40dHTbBR7n3W9rRVTT5BLtOyyF0Qrol_NInhpTW_7oVTC5gg-xogC81nZUdyQK0MfAQ_9r4ad6wnSChourzzZE2GN-t0JSpUU-MaVeICkF775Smrqn59n8q-zqvRIayB3trnoC_GznVkb_GUDL9BHYyVTTh3QrgSuz4KKdC9JRjDqiYmn9x4EOmmB5dZ4zBwoziwvYokFhQQs3O4IjdhaGyTBfPcosBRy8fn-haSBerBQadmsehg-KumYqp40ZIkCWoXUDtIBzqam9eXWrQA",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://fx-provider-dataplane-connector.c-27d7c36.kyma.ondemand.com/api/public",
+              "protocol": "https",
+              "host": [
+                "fx-provider-dataplane-connector",
+                "c-27d7c36",
+                "kyma",
+                "ondemand",
+                "com"
+              ],
+              "path": [
+                "api",
+                "public"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "provider-connector-url",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-url",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-dsp-url",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-did",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-did",
+      "value": ""
+    },
+    {
+      "key": "provider-connector-x-api-key",
+      "value": ""
+    },
+    {
+      "key": "consumer-connector-x-api-key",
+      "value": ""
+    },
+    {
+      "key": "asset-id",
+      "value": ""
+    },
+    {
+      "key": "access-policy",
+      "value": ""
+    },
+    {
+      "key": "usage-policy",
+      "value": ""
+    },
+    {
+      "key": "contract-definition",
+      "value": ""
+    },
+    {
+      "key": "endpoint",
+      "value": ""
+    }
+  ]
+}
