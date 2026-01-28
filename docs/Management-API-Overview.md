@@ -345,7 +345,7 @@ In response you will get the data which provider shared with consumer.
 ## Postman collection
 
 <a
-  href={useBaseUrl('/postman_collection/Tractus-X_0-9-0_postman_collection.json')}
+  href={useBaseUrl('/postman_collection/Tractus-X_0_9_0_postman_collection.json')}
   download
 >
   Download Postman Collection for Management API Walkthrough
