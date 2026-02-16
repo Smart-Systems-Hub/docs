@@ -63,6 +63,18 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Releases',
+      link: {
+        type: 'generated-index',
+        description: 'Guides and references for new releases.',
+        slug: '/releases',
+      },
+      items: [
+        'Release-notes',
+      ],
+    },
+    {
+      type: 'category',
       label: 'DSI Connectors',
       link: {
         type: 'generated-index',
