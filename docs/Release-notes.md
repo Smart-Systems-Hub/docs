@@ -10,6 +10,77 @@ We summarize key highlights for better readability and orientation.
 For full technical details, commits, and migration instructions, please always refer to the official upstream GitHub release notes.
 </Admonition>
 
+## Tractus-X EDC 0.12.0
+
+**Release Date:** March 2026  
+
+**Upstream Source:**  
+<Link
+  to="https://github.com/eclipse-tractusx/tractusx-edc/releases/tag/0.12.0"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Official GitHub Release ↗
+</Link>
+
+**Smart Systems Hub repository Source:**  
+<Link
+  to="https://github.com/Smart-Systems-Hub/helm-charts/releases/tag/tractusx-connector-0.12.0"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Smart Systems Hub releases ↗
+</Link>
+
+### What’s New — Main Features
+
+The 0.12.0 release introduces significant improvements in identity management, decentralized discovery, performance optimization, and system architecture. It also includes important updates that improve deployment flexibility and observability.
+
+### Identity & Discovery
+
+**Decentralized Connector Discovery (via DID):**  
+Connectors can now be discovered dynamically using DID-based identifiers instead of static configuration.
+
+**Automatic Data Service Registration:**  
+Connector endpoints can automatically register themselves in the DID document during startup.
+
+### Performance & Caching
+
+**Verifiable Presentation (VP) caching:**  
+Adds caching for verifiable presentations to reduce repeated validation steps and improve performance.
+
+### Platform Evolution
+
+**Participant Context IDs introduced:**  
+A new mandatory identifier has been added as preparation for future multi-tenant connector support.
+
+### Compatibility & Migration
+
+**Protocol and configuration updates:**  
+This release introduces changes that may require updates in existing setups, especially around identity and discovery.
+
+<Admonition type="warning" title="Compatibility Notice">
+Changes to discovery and identity handling may require configuration updates when upgrading.
+</Admonition>
+
+### Migration Considerations
+
+When upgrading to version 0.12.0:
+
+- Review DID-based discovery and automatic registration behavior  
+- Ensure correct configuration of Participant Context IDs  
+- Validate performance-related changes (e.g., VP caching)
+
+Always refer to the official release for full migration details:
+
+<Link
+  to="https://github.com/eclipse-tractusx/tractusx-edc/releases/tag/0.12.0"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Full Release Notes ↗
+</Link>
+
 ## Tractus-X EDC 0.11.3
 
 **Release Date:** November 2025  
