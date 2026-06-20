@@ -111,6 +111,18 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Discovery Docs',
+      link: {
+        type: 'generated-index',
+        description: 'Documents on Discovery.',
+        slug: '/discovery-docs',
+      },
+      items: [
+        'discovery-docs',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Dataspace Compatibility',
       link: {
         type: 'generated-index',
